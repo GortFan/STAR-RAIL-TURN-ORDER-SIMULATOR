@@ -5,11 +5,19 @@ function App() {
   let TurnOrder=[
     {
       id: 1,
-      path: './resources/1101.png'
+      path: 'https://rerollcdn.com/STARRAIL/Characters/Full/1101.png'
     },
     {
       id: 2,
-      path: './resources/1109.png'
+      path: 'https://rerollcdn.com/STARRAIL/Characters/Full/1201.png'
+    },
+    {
+      id: 3,
+      path: 'https://rerollcdn.com/STARRAIL/Characters/Full/1009.png'
+    },
+    {
+      id: 4,
+      path: 'https://rerollcdn.com/STARRAIL/Characters/Full/1104.png'
     }
   ]
   return (
