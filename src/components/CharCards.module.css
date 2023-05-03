@@ -1,13 +1,14 @@
 .card {
-    background-color: white;
+    background-color: rgb(27, 27, 27);
     border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    display: inline-block;
+    height: 209px; 
+    width: 152px;
     overflow: hidden;
   }
 .card img {
     width: 100%;
-    height: auto;
-    transform: translateY(50%); 
+    margin: 0;
+    transform: translateY(-5%)
   }
   
