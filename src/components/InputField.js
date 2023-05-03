@@ -1,4 +1,6 @@
-export default function InputField(){
+export default function InputField(props){
+
+  let TurnOrder = props.TurnOrder; 
         function handleSubmit(e) {
           // Prevent the browser from reloading the page
           e.preventDefault();
@@ -12,26 +14,25 @@ export default function InputField(){
           console.log(formJson);
 
           //testing math
-          let speed = parseInt(formJson.Speed)
-          console.log(speed)
+          let speed = parseInt(formJson.Speed);
+          console.log(speed);
 
           //validation
 
           if(speed < 0){
-            console.log('error')
+            console.log('error');
           }
 
           else{
-            let AV = 10000/speed
+            let AV = 10000/speed;
             if(AV-Math.floor(AV)>0){
-                console.log('float')
+                console.log('float');
             }
             else{
-                console.log('int')
+                console.log('int');
             }
-            console.log(AV)
+            console.log(AV);
           }
-
         }
       
         return (
