@@ -45,27 +45,27 @@ export default function InputField(props){
         }
 
         function bubbleSort(TurnOrder) {
-          console.log('hi')
-          console.log(TurnOrder[0].AV)
-          console.log(TurnOrder[1].AV)
-          console.log(TurnOrder[2].AV)
-          console.log(TurnOrder[3].AV)
+          // console.log('hi')
+          // console.log(TurnOrder[0].AV)
+          // console.log(TurnOrder[1].AV)
+          // console.log(TurnOrder[2].AV)
+          // console.log(TurnOrder[3].AV)
 
           var i, j;
           var len = TurnOrder.length;
         
           var isSwapped = false;
         
-          for (i = 0; i < len; i++) {
+           for (i = 0; i < len; i++) {
         
               isSwapped = false;
         
-              for (j = 0; j < len; j++) {
+              for (j = 0; j < len-1; j++) {
                   if (TurnOrder[j].AV > TurnOrder[j + 1].AV) {
                       var temp = TurnOrder[j].AV
                       TurnOrder[j].AV = TurnOrder[j + 1].AV;
                       TurnOrder[j + 1].AV = temp;
-                      isSwapped = true;
+                     isSwapped = true;
                   }
               }
         
@@ -78,7 +78,7 @@ export default function InputField(props){
         
           // Print the array
           console.log(TurnOrder)
-      }
+        }
         
       
         
