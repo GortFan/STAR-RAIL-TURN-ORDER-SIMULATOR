@@ -1,33 +1,36 @@
 import InputField from './components/InputField'
 import CharCardsMapper from './components/CharCardsMapper'
-import {useState} from 'react'
+
 
 function App() {
 
-  const [turnOrder, setTurnOrder] = useState([
+  var turnOrder = [
     {
       id: 1,
       path: 'https://rerollcdn.com/STARRAIL/Characters/Full/1101.png',
-      speed: 110
+      speed: 110,
+      AV: 91
     },
     {
       id: 2,
       path: 'https://rerollcdn.com/STARRAIL/Characters/Full/1201.png',
-      speed: 100
+      speed: 100,
+      AV: 100
     },
     {
       id: 3,
       path: 'https://rerollcdn.com/STARRAIL/Characters/Full/1009.png',
-      speed: 98
+      speed: 98,
+      AV: 103
     },
     {
       id: 4,
       path: 'https://rerollcdn.com/STARRAIL/Characters/Full/1104.png',
-      speed: 92
+      speed: 92,
+      AV: 109
     }
-  ])
-
-console.log(turnOrder)
+  ]
+//console.log(turnOrder)
 
   return (
     <div>

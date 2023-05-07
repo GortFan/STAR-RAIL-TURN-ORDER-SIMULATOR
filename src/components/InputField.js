@@ -1,6 +1,6 @@
 export default function InputField(props){
 
-  let TurnOrder = props.TurnOrder; 
+  var TurnOrder = props.TurnOrder; 
         function handleSubmit(e) {
           // Prevent the browser from reloading the page
           e.preventDefault();
@@ -15,11 +15,11 @@ export default function InputField(props){
 
           //testing math
           let speed = parseInt(formJson.Speed);
-          console.log(speed);
+          console.log("The speed is " + speed);
 
           //validation
 
-          if(speed < 0){
+          if(speed <= 0){
             console.log('error');
           }
 
@@ -27,13 +27,64 @@ export default function InputField(props){
             let AV = 10000/speed;
             if(AV-Math.floor(AV)>0){
                 console.log('float');
+                AV = Math.ceil(AV)
+                console.log('AV is ' + AV)
+                setArray(AV)
             }
             else{
                 console.log('int');
+                console.log('AV is ' + AV)
+                setArray(AV)
             }
-            console.log(AV);
           }
         }
+
+        function setArray(AV){
+          TurnOrder[0].AV = AV
+          bubbleSort(TurnOrder)
+        }
+
+        function bubbleSort(TurnOrder) {
+          console.log('hi')
+          console.log(TurnOrder[0].AV)
+          console.log(TurnOrder[1].AV)
+          console.log(TurnOrder[2].AV)
+          console.log(TurnOrder[3].AV)
+
+          var i, j;
+          var len = TurnOrder.length;
+        
+          var isSwapped = false;
+        
+          for (i = 0; i < len; i++) {
+        
+              isSwapped = false;
+        
+              for (j = 0; j < len; j++) {
+                  if (TurnOrder[j].AV > TurnOrder[j + 1].AV) {
+                      var temp = TurnOrder[j].AV
+                      TurnOrder[j].AV = TurnOrder[j + 1].AV;
+                      TurnOrder[j + 1].AV = temp;
+                      isSwapped = true;
+                  }
+              }
+        
+              // IF no two elements were swapped
+              // by inner loop, then break 
+              if (!isSwapped) {
+                  break;
+              }
+          }
+        
+          // Print the array
+          console.log(TurnOrder)
+      }
+        
+      
+        
+      // calling the bubbleSort Function
+      // bubbleSort(TurnOrder)
+      
       
         return (
           <form method="post" onSubmit={handleSubmit}>
