@@ -19,7 +19,7 @@ export default function InputField(props){
 
           //validation
 
-          if(speed <= 0 || isNaN(speed)){
+          if(speed <= 0 || isNaN(speed) || speed > 99999){
             alert('invalid input');
           }
 
@@ -27,19 +27,19 @@ export default function InputField(props){
             let AV = 10000/speed;
             if(AV-Math.floor(AV)>0){
                 AV = Math.ceil(AV)
-                setOrder(AV)
+                setOrder(AV, speed)
             }
             else{
-
-                setOrder(AV)
+                setOrder(AV, speed)
             }
           }
         }
 
-        function setOrder(AV){
+        function setOrder(AV, speed){
           var editArray = [...array]
           var bronyaIndex = editArray.findIndex(object => object.id === 1)
           editArray[bronyaIndex].AV = AV
+          editArray[bronyaIndex].speed = speed
           bubbleSort(editArray)
         }
 

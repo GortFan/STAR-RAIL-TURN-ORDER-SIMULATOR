@@ -1,6 +1,6 @@
 input {
     margin-right: 5px;
-    border: 1.5px solid rgb(8, 21, 80);
+    border: 1.5px solid rgb(27, 27, 27);
     border-radius: 10px;  
 }
 
@@ -10,7 +10,7 @@ input:hover {
 
 button {
     margin-left: 5px;
-    border: 1.5px solid rgb(8, 21, 80);
+    border: 1.5px solid rgb(27, 27, 27);
     border-radius: 10px;  
 }
 
