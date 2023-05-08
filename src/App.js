@@ -1,6 +1,4 @@
 import InputField from './components/InputField'
-import CharCardsMapper from './components/CharCardsMapper'
-
 
 function App() {
 
@@ -30,14 +28,10 @@ function App() {
       AV: 109
     }
   ]
-//console.log(turnOrder)
 
   return (
     <div>
       <InputField 
-      TurnOrder = {turnOrder}
-      />
-      <CharCardsMapper
       TurnOrder = {turnOrder}
       />
     </div>
