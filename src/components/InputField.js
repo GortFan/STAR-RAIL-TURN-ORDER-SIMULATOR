@@ -38,7 +38,6 @@ export default function InputField(props){
         function setOrder(AV){
           var editArray = [...array]
           var bronyaIndex = editArray.findIndex(object => object.id === 1)
-          //console.log(bronyaIndex)
           editArray[bronyaIndex].AV = AV
           bubbleSort(editArray)
         }
@@ -68,7 +67,6 @@ export default function InputField(props){
           }
         
           setArray(editArray)
-          //console.log(array)
         }
 
         React.useEffect(()=>{
