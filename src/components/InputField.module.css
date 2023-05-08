@@ -1,0 +1,19 @@
+input {
+    margin-right: 5px;
+    border: 1.5px solid rgb(8, 21, 80);
+    border-radius: 10px;  
+}
+
+input:hover {
+    background-color: #e6e6e6;
+}
+
+button {
+    margin-left: 5px;
+    border: 1.5px solid rgb(8, 21, 80);
+    border-radius: 10px;  
+}
+
+button:hover {
+    background-color: #e6e6e6;
+}
