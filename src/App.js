@@ -1,33 +1,45 @@
 import InputField from './components/InputField'
+import Id1Img from './resources/1101.png'
+import Id2Img from './resources/1013.png'
+import Id3Img from './resources/1009.png'
+import Id4Img from './resources/1104.png'
+import Id5Img from './resources/Monster_1013020.png'
 
 function App() {
 
   var turnOrder = [
     {
+      id: 5,
+      path: Id5Img,
+      speed: 125,
+      AV: 80
+    },
+    {
       id: 1,
-      path: 'https://rerollcdn.com/STARRAIL/Characters/Full/1101.png',
+      path: Id1Img,
       speed: 110,
       AV: 91
     },
     {
       id: 2,
-      path: 'https://rerollcdn.com/STARRAIL/Characters/Full/1201.png',
+      path: Id2Img,
       speed: 100,
       AV: 100
     },
     {
       id: 3,
-      path: 'https://rerollcdn.com/STARRAIL/Characters/Full/1009.png',
+      path: Id3Img,
       speed: 98,
       AV: 103
     },
     {
       id: 4,
-      path: 'https://rerollcdn.com/STARRAIL/Characters/Full/1104.png',
+      path: Id4Img,
       speed: 92,
       AV: 109
-    }
+    },
   ]
+  console.log(turnOrder[0].path)
 
   return (
     <div>

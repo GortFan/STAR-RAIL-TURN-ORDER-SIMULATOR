@@ -14,7 +14,7 @@ export default function InputField(props){
           const formData = new FormData(form);
          
           const formJson = Object.fromEntries(formData.entries());
-
+          console.log(formJson)
           let speed = parseInt(formJson.Speed);
 
           //validation
@@ -36,10 +36,27 @@ export default function InputField(props){
         }
 
         function setOrder(AV, speed){
-          var editArray = [...array]
-          var bronyaIndex = editArray.findIndex(object => object.id === 1)
+          let editArray = [...array]
+          let bronyaIndex = editArray.findIndex(object => object.id === 1)
           editArray[bronyaIndex].AV = AV
           editArray[bronyaIndex].speed = speed
+          bubbleSort(editArray)
+        }
+
+        function handleBreak(){
+          let editArray = [...array]
+          let enemyIndex = editArray.findIndex(object => object.id === 5)
+          editArray[enemyIndex].AV += 2500
+          console.log(editArray[enemyIndex].AV)
+          bubbleSort(editArray)
+        }
+        
+        function handleImprisonment(){
+          let editArray = [...array]
+          let enemyIndex = editArray.findIndex(object => object.id === 5)
+          let BreakEffect = 0.2
+          editArray[enemyIndex].AV += 10000*(0.3*(1+BreakEffect))
+          console.log(editArray[enemyIndex].AV)
           bubbleSort(editArray)
         }
 
@@ -68,21 +85,41 @@ export default function InputField(props){
           }
         
           setArray(editArray)
+          console.log(array)
         }
 
         React.useEffect(()=>{
           console.log('Re-render')
         }, [array])
       
-      
         return (
-          <div>
+          <div className={classes.container}>
+            <div>
             <form method="post" onSubmit={handleSubmit}>
-              <input type='number' name="Speed"/>
-              <button type="submit">Submit form</button>
+                <p>Manipulate Bronya's Speed: </p>
+                <input type='number' name="Speed"/>
+                <button type="submit">Apply</button>
             </form>
-            <CharCardsMapper
-              TurnOrder = {array}/>
+
+            <div className={classes.container}>
+              <p>Toughness Break:</p>
+              <input type='checkbox' name="Toughness Break" onChange={handleBreak}></input>
+            </div>
+
+            <div className={classes.container}>
+              <p>Imprisonment - Imaginary:</p>
+              <input type='checkbox' name="Imprisonment" onChange={handleImprisonment}></input>
+            </div>
+
+            <div className={classes.container}>
+              <p>Entanglement - Quantum:</p>
+              <input type='checkbox' name="Entanglement"></input>
+            </div>
+            </div>
+            <div>
+              <CharCardsMapper
+                TurnOrder = {array}/>
+            </div>
           </div>
           );
       }

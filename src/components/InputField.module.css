@@ -17,3 +17,9 @@ button {
 button:hover {
     background-color: #e6e6e6;
 }
+
+.container{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
