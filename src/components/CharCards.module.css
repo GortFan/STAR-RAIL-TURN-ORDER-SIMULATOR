@@ -1,5 +1,5 @@
 .card {
-    background-color: rgb(27, 27, 27);
+    background-color: rgb(241, 241, 241);
     border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     height: 100px; 
@@ -16,7 +16,8 @@
 .values {
     font-size: 14px;
     margin-top: 2px;
-    color: rgb(223, 223, 223);
+    color: rgb(27, 27, 27);
+    font-family: 'Lucida Sans'
 }
 .container {
   display: flex;
@@ -28,7 +29,7 @@
 .valcontainer{
   display: block;
   text-align: center;
-  background-color: rgb(27, 27, 27);
+  background-color: rgb(241, 241, 241);
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   height: 40px; 

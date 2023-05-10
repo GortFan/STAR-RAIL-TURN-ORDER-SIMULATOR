@@ -56,11 +56,13 @@ export default function InputField(props){
           bubbleSort(editArray)
         }
 
+        //Logic for disabling and re-enabling checkboxes 
         function handleChange(e){
           setSelected(!selected)
           setVal(e.target.value)
         }
 
+        //Sorting array by AV
         function bubbleSort(editArray) {
           var i, j;
           var len = editArray.length;
@@ -89,7 +91,6 @@ export default function InputField(props){
         }
 
         React.useEffect(()=>{
-          console.log('rr')
         }, [array])
 
         return (
@@ -97,21 +98,21 @@ export default function InputField(props){
 
             <div>
             <form method="post" onSubmit={handleSubmit}>
-              <p>Change Speed: </p>
+              <p className={classes.parameters}>Change Speed: </p>
               <input type='number' name="Speed"/>
 
               <div className={classes.container}>
-              <p>Break:</p>
+              <p className={classes.parameters}>Break:</p>
               <input type='checkbox' name ='Break' value='Break' onChange={handleChange} disabled={selected === true && val !== 'Break'}></input>
               </div>
 
               <div className={classes.container}>
-              <p>Imprisonment:</p>
+              <p className={classes.parameters}>Imprisonment:</p>
               <input type='checkbox' name ='Imprisonment' value='Imprisonment' onChange={handleChange} disabled={selected === true && val !== 'Imprisonment'}></input>
               </div>
 
               <div className={classes.container}>
-              <p>Entanglement:</p>
+              <p className={classes.parameters}>Entanglement:</p>
               <input type='checkbox' name ='Entanglement' value='Entanglement' onChange={handleChange} disabled={selected === true && val !== 'Entanglement'}></input>
               </div>
 

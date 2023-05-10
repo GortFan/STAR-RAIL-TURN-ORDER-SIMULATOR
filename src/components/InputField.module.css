@@ -2,6 +2,7 @@ input {
     margin-right: 5px;
     border: 1.5px solid rgb(27, 27, 27);
     border-radius: 10px;  
+    color: rgb(27, 27, 27);
 }
 
 input:hover {
@@ -22,4 +23,10 @@ button:hover {
     display:flex;
     align-items: center;
     justify-content: center;
+    background-color:rgb(27, 27, 27);
+}
+
+.parameters{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: rgb(241, 241, 241);
 }
