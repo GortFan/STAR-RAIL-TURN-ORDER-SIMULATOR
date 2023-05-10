@@ -17,7 +17,7 @@
     font-size: 14px;
     margin-top: 2px;
     color: rgb(27, 27, 27);
-    font-family: 'Lucida Sans'
+    font-family: 'Lucida Sans';
 }
 .container {
   display: flex;
