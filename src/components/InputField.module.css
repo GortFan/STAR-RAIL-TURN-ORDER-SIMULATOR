@@ -37,6 +37,9 @@ button {
     padding-right: 15px;
     padding-top: 3px;
     padding-bottom: 3px;
+    margin-left: 7px;
+    margin-right: 7px;
+    margin-top: 10px;
 }
 
 button:hover {
@@ -70,9 +73,9 @@ button:hover {
 }
 
 .flexbtn{
+    justify-content: center;
     display: flex;
     align-self: center;
-    justify-content: center;
 }
 
 .parameters{
