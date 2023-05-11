@@ -12,31 +12,36 @@ function App() {
       id: 5,
       path: Id5Img,
       speed: 125,
-      AV: 80
+      AV: 80,
+      Gauge: 10000
     },
     {
       id: 1,
       path: Id1Img,
       speed: 110,
-      AV: 91
+      AV: 91,
+      Gauge: 10000
     },
     {
       id: 2,
       path: Id2Img,
       speed: 100,
-      AV: 100
+      AV: 100,
+      Gauge: 10000
     },
     {
       id: 3,
       path: Id3Img,
       speed: 98,
-      AV: 103
+      AV: 103,
+      Gauge: 10000
     },
     {
       id: 4,
       path: Id4Img,
       speed: 92,
-      AV: 109
+      AV: 109,
+      Gauge: 10000
     },
   ]
   console.log(turnOrder[0].path)

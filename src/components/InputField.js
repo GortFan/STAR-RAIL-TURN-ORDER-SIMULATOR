@@ -17,7 +17,7 @@ export default function InputField(props){
           const formJson = Object.fromEntries(formData.entries());
 
           //validation
-          if(formJson.Speed <= 0 || isNaN(formJson.Speed) || formJson.Speed > 99999){
+          if(formJson.Speed <= 0 || isNaN(formJson.Speed) || formJson.Speed > 999){
             alert('invalid input');
           }
           else{
@@ -33,21 +33,23 @@ export default function InputField(props){
           let charSpeed = editArray[charIndex].speed
           let AV = Math.ceil(10000/charSpeed)
           editArray[charIndex].AV = AV
-
-          //Enemy Math
+          //Enemy Math NOTE: FIX THIS WHOEVER ACTUALLY KNOWS THE FORMULA 
           let enemyIndex = editArray.findIndex(object => object.id === 5)
+          console.log(editArray[enemyIndex].speed)
           if(formJson.Break === 'Break'){
             let enemySpeed = editArray[enemyIndex].speed 
-            editArray[enemyIndex].AV = Math.ceil((10000+2500)/enemySpeed)
+            let enemyGauge = editArray[enemyIndex].Gauge = 10000+(10000*(0.25))
+            editArray[enemyIndex].AV = Math.ceil(enemyGauge/enemySpeed)
           }
           if(formJson.Imprisonment === 'Imprisonment'){
             let enemySpeed = (editArray[enemyIndex].speed)*(1-0.1)
-            editArray[enemyIndex].AV = Math.ceil((10000)/enemySpeed)
-            console.log(editArray[enemyIndex].AV)
+            let enemyGauge = editArray[enemyIndex].Gauge = 10000+(10000*(0.3*(1+0.15))) //0.15 is break effect %
+            editArray[enemyIndex].AV = Math.ceil(enemyGauge/enemySpeed)
           }
           if(formJson.Entanglement === 'Entanglement'){
             let enemySpeed = editArray[enemyIndex].speed
-            editArray[enemyIndex].AV = Math.ceil((10000+2000)/enemySpeed)
+            let enemyGauge = editArray[enemyIndex].Gauge = 10000+(10000*(0.3*(1+0.15))) //0.15 is break effect %
+            editArray[enemyIndex].AV = Math.ceil(enemyGauge/enemySpeed)
           }
           if(formJson.Break === undefined && formJson.Imprisonment === undefined && formJson.Entanglement === undefined){
             editArray[enemyIndex].AV = 80
@@ -96,27 +98,33 @@ export default function InputField(props){
         return (
           <div className={classes.container}>
 
-            <div>
+            <div className={classes.formflex}>
             <form method="post" onSubmit={handleSubmit}>
-              <p className={classes.parameters}>Change Speed: </p>
+
+              <div className={classes.speedflex}>
+              <p className={classes.parameters}>Change Speed</p>
               <input type='number' name="Speed"/>
-
-              <div className={classes.container}>
-              <p className={classes.parameters}>Break:</p>
-              <input type='checkbox' name ='Break' value='Break' onChange={handleChange} disabled={selected === true && val !== 'Break'}></input>
               </div>
 
-              <div className={classes.container}>
-              <p className={classes.parameters}>Imprisonment:</p>
-              <input type='checkbox' name ='Imprisonment' value='Imprisonment' onChange={handleChange} disabled={selected === true && val !== 'Imprisonment'}></input>
+              <div className={classes.delayflex}>
+              <input className={classes.checkbox} type='checkbox' name ='Break' value='Break' onChange={handleChange} disabled={selected === true && val !== 'Break'}></input>
+              <p className={classes.parameters}>Break</p>
               </div>
 
-              <div className={classes.container}>
-              <p className={classes.parameters}>Entanglement:</p>
-              <input type='checkbox' name ='Entanglement' value='Entanglement' onChange={handleChange} disabled={selected === true && val !== 'Entanglement'}></input>
+              <div className={classes.delayflex}>
+              <input className={classes.checkbox} type='checkbox' name ='Imprisonment' value='Imprisonment' onChange={handleChange} disabled={selected === true && val !== 'Imprisonment'}></input>
+              <p className={classes.parameters}>Imprisonment</p>
               </div>
 
+              <div className={classes.delayflex}>
+              <input className={classes.checkbox} type='checkbox' name ='Entanglement' value='Entanglement' onChange={handleChange} disabled={selected === true && val !== 'Entanglement'}></input>
+              <p className={classes.parameters}>Entanglement</p>
+              </div>
+
+              <div className={classes.flexbtn}>
               <button type="submit">Apply</button>
+              </div>
+
             </form>
             </div>
 

@@ -27,14 +27,16 @@
 }
 
 .valcontainer{
-  display: block;
+  padding-top: 2px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-bottom: 2px;
+  display: flex;
+  flex-direction: column;
   text-align: center;
   background-color: rgb(241, 241, 241);
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  height: 40px; 
-  width: 80px;
-  overflow: hidden;
   margin-left: 5px;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }

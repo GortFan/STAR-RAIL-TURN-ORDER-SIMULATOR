@@ -9,6 +9,7 @@ export default function CharCards(props){
             <div className={classes.valcontainer}>
                 <div className={classes.values}>Speed: {props.speed}</div>
                 <div className={classes.values}>AV: {props.AV}</div>
+                <div className={classes.values}>Gauge: {props.gauge}</div>
             </div>
         </div>
 
