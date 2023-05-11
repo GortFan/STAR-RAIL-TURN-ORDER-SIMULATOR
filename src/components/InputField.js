@@ -42,11 +42,11 @@ export default function InputField(props){
             editArray[enemyIndex].Gauge = 10000+(10000*(0.3*(1+0.15))) //0.15 is break effect %
             editArray[enemyIndex].AV = Math.ceil(editArray[enemyIndex].Gauge/editArray[enemyIndex].speed)
           }
-          if(selected === true){
-            editArray[enemyIndex].AV = 80
-            editArray[enemyIndex].Gauge = 10000
-            editArray[enemyIndex].speed = 125
-          }
+          // if(selected === true){
+          //   editArray[enemyIndex].AV = 80
+          //   editArray[enemyIndex].Gauge = 10000
+          //   editArray[enemyIndex].speed = 125
+          // }
           bubbleSort(editArray)
         }
 
@@ -57,6 +57,10 @@ export default function InputField(props){
           //1st element
           editArray[0].Gauge = 10000
           editArray[0].AV = Math.ceil(editArray[0].Gauge/editArray[0].speed)
+          if(editArray[0].id===5){
+            console.log('reset enemy')
+            editArray[0].speed=125
+          }
           //2nd element
           editArray[1].Gauge = editArray[1].Gauge - (editArray[1].speed*multiplier)
           editArray[1].AV = Math.ceil(editArray[1].Gauge/editArray[1].speed)
@@ -77,7 +81,6 @@ export default function InputField(props){
           //1st element
           editArray[0].Gauge = 10000
           editArray[0].AV = Math.ceil(editArray[0].Gauge/editArray[0].speed)
-
           //2nd element
           editArray[1].Gauge = 10000
           editArray[1].AV = Math.ceil(editArray[1].Gauge/editArray[1].speed)
