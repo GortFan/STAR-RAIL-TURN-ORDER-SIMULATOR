@@ -6,7 +6,10 @@ export default function InputField(props){
   const [array, setArray] = useState(props.TurnOrder)
   const [selected, setSelected] = useState(false);
   const [val, setVal] = useState();
-
+  const [checkBreak, setCheckBreak] = useState();
+  const [checkImprison, setCheckImprison] = useState();
+  const [checkEntangle, setCheckEntangle] = useState();
+  
         function changeSpeed(e) {
           //validation
           if(e.target.value <= 0 || isNaN(e.target.value) || e.target.value > 999){
@@ -31,26 +34,37 @@ export default function InputField(props){
           let enemyIndex = editArray.findIndex(object => object.id === 5)
           if(debuff === 'Break'){
             editArray[enemyIndex].Gauge = 10000+(10000*(0.25))
-            editArray[enemyIndex].AV = Math.ceil(editArray[enemyIndex].Gauge/editArray[enemyIndex].speed )
+            editArray[enemyIndex].AV = Math.ceil(editArray[enemyIndex].Gauge/editArray[enemyIndex].speed)
+            setCheckBreak(true)
           }
           if(debuff === 'Imprisonment'){
             editArray[enemyIndex].speed = Math.ceil((editArray[enemyIndex].speed)*(1-0.1))
             editArray[enemyIndex].Gauge = 10000+(10000*(0.3*(1+0.15))) //0.15 is break effect %
             editArray[enemyIndex].AV = Math.ceil(editArray[enemyIndex].Gauge/editArray[enemyIndex].speed)
+            setCheckImprison(true)
           }
           if(debuff === 'Entanglement'){
             editArray[enemyIndex].Gauge = 10000+(10000*(0.3*(1+0.15))) //0.15 is break effect %
             editArray[enemyIndex].AV = Math.ceil(editArray[enemyIndex].Gauge/editArray[enemyIndex].speed)
+            setCheckEntangle(true)
           }
-          // if(selected === true){
-          //   editArray[enemyIndex].AV = 80
-          //   editArray[enemyIndex].Gauge = 10000
-          //   editArray[enemyIndex].speed = 125
-          // }
+          if(selected === true){
+            editArray[enemyIndex].AV = 80
+            editArray[enemyIndex].Gauge = 10000
+            editArray[enemyIndex].speed = 125
+            setCheckBreak(false)
+            setCheckImprison(false)
+            setCheckEntangle(false)
+          }
           bubbleSort(editArray)
         }
 
         function handleAdvance(){
+          setSelected(false)
+          setVal()
+          setCheckBreak(false)
+          setCheckImprison(false)
+          setCheckEntangle(false)
           let editArray = [...array]
           console.log(editArray[0].AV)
           let multiplier = editArray[0].AV
@@ -58,7 +72,6 @@ export default function InputField(props){
           editArray[0].Gauge = 10000
           editArray[0].AV = Math.ceil(editArray[0].Gauge/editArray[0].speed)
           if(editArray[0].id===5){
-            console.log('reset enemy')
             editArray[0].speed=125
           }
           //2nd element
@@ -77,6 +90,11 @@ export default function InputField(props){
         }
 
         function handleReset(){
+          setSelected(false)
+          setVal()
+          setCheckBreak(false)
+          setCheckImprison(false)
+          setCheckEntangle(false)
           let editArray = [...array]
           //1st element
           editArray[0].Gauge = 10000
@@ -144,17 +162,17 @@ export default function InputField(props){
               </div>
 
               <div className={classes.delayflex}>
-              <input className={classes.checkbox} type='checkbox' name ='Break' value='Break' onChange={handleChange} disabled={selected === true && val !== 'Break'}></input>
+              <input className={classes.checkbox} type='checkbox' name ='Break' value='Break' onChange={handleChange} checked={checkBreak} disabled={selected === true && val !== 'Break'}></input>
               <p className={classes.parameters}>Break</p>
               </div>
 
               <div className={classes.delayflex}>
-              <input className={classes.checkbox} type='checkbox' name ='Imprisonment' value='Imprisonment' onChange={handleChange} disabled={selected === true && val !== 'Imprisonment'}></input>
+              <input className={classes.checkbox} type='checkbox' name ='Imprisonment' value='Imprisonment' onChange={handleChange} checked={checkImprison} disabled={selected === true && val !== 'Imprisonment'}></input>
               <p className={classes.parameters}>Imprisonment</p>
               </div>
 
               <div className={classes.delayflex}>
-              <input className={classes.checkbox} type='checkbox' name ='Entanglement' value='Entanglement' onChange={handleChange} disabled={selected === true && val !== 'Entanglement'}></input>
+              <input className={classes.checkbox} type='checkbox' name ='Entanglement' value='Entanglement' onChange={handleChange} checked={checkEntangle} disabled={selected === true && val !== 'Entanglement'}></input>
               <p className={classes.parameters}>Entanglement</p>
               </div>
 
