@@ -6,9 +6,9 @@ export default function InputField(props){
   const [array, setArray] = useState(props.TurnOrder)
   const [selected, setSelected] = useState(false);
   const [val, setVal] = useState();
-  const [checkBreak, setCheckBreak] = useState();
-  const [checkImprison, setCheckImprison] = useState();
-  const [checkEntangle, setCheckEntangle] = useState();
+  const [checkBreak, setCheckBreak] = useState(false);
+  const [checkImprison, setCheckImprison] = useState(false);
+  const [checkEntangle, setCheckEntangle] = useState(false);
   
         function changeSpeed(e) {
           //validation
@@ -111,6 +111,8 @@ export default function InputField(props){
           //5th element
           editArray[4].Gauge = 10000
           editArray[4].AV = Math.ceil(editArray[4].Gauge/editArray[4].speed)
+          //enemy speed
+          editArray[editArray.findIndex(object => object.id === 5)].speed=125
           bubbleSort(editArray)
         }
 
