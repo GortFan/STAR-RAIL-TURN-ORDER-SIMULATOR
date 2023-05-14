@@ -69,11 +69,11 @@ export default function InputField(props){
           console.log(editArray[0].AV)
           let multiplier = editArray[0].AV
           //1st element
-          editArray[0].Gauge = 10000
-          editArray[0].AV = Math.ceil(editArray[0].Gauge/editArray[0].speed)
           if(editArray[0].id===5){
             editArray[0].speed=125
           }
+          editArray[0].Gauge = 10000
+          editArray[0].AV = Math.ceil(editArray[0].Gauge/editArray[0].speed)
           //2nd element
           editArray[1].Gauge = editArray[1].Gauge - (editArray[1].speed*multiplier)
           editArray[1].AV = Math.ceil(editArray[1].Gauge/editArray[1].speed)
