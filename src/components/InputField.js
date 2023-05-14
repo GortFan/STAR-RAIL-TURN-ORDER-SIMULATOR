@@ -124,10 +124,10 @@ export default function InputField(props){
 
         //Sorting array by AV
         function bubbleSort(editArray) {
-          var i, j;
-          var len = editArray.length;
+          let i, j;
+          let len = editArray.length;
         
-          var isSwapped = false;
+          let isSwapped = false;
         
            for (i = 0; i < len; i++) {
         
@@ -135,7 +135,7 @@ export default function InputField(props){
         
               for (j = 0; j < len-1; j++) {
                   if (editArray[j].AV > editArray[j + 1].AV) {
-                      var temp = editArray[j]
+                      let temp = editArray[j]
                       editArray[j] = editArray[j + 1];
                       editArray[j + 1] = temp;
                      isSwapped = true;
