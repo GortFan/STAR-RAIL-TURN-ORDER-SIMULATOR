@@ -66,7 +66,6 @@ export default function InputField(props){
           setCheckImprison(false)
           setCheckEntangle(false)
           let editArray = [...array]
-          console.log(editArray[0].AV)
           let multiplier = editArray[0].AV
           //1st element
           if(editArray[0].id===5){
