@@ -1,4 +1,3 @@
-import CharCardsMapper from './CharCardsMapper'
 import React, {useState} from 'react'
 import classes from './InputField.module.css'
 export default function InputField(props){
@@ -56,62 +55,6 @@ export default function InputField(props){
             setCheckImprison(false)
             setCheckEntangle(false)
           }
-          bubbleSort(editArray)
-        }
-
-        function handleAdvance(){
-          setSelected(false)
-          setVal()
-          setCheckBreak(false)
-          setCheckImprison(false)
-          setCheckEntangle(false)
-          let editArray = [...array]
-          let multiplier = editArray[0].AV
-          //1st element
-          if(editArray[0].id===5){
-            editArray[0].speed=125
-          }
-          editArray[0].Gauge = 10000
-          editArray[0].AV = Math.ceil(editArray[0].Gauge/editArray[0].speed)
-          //2nd element
-          editArray[1].Gauge = editArray[1].Gauge - (editArray[1].speed*multiplier)
-          editArray[1].AV = Math.ceil(editArray[1].Gauge/editArray[1].speed)
-          //3rd element
-          editArray[2].Gauge = editArray[2].Gauge - (editArray[2].speed*multiplier)
-          editArray[2].AV = Math.ceil(editArray[2].Gauge/editArray[2].speed)
-          //4th element
-          editArray[3].Gauge = editArray[3].Gauge - (editArray[3].speed*multiplier)
-          editArray[3].AV = Math.ceil(editArray[3].Gauge/editArray[3].speed)
-          //5th element
-          editArray[4].Gauge = editArray[4].Gauge - (editArray[4].speed*multiplier)
-          editArray[4].AV = Math.ceil(editArray[4].Gauge/editArray[4].speed)
-          bubbleSort(editArray)
-        }
-
-        function handleReset(){
-          setSelected(false)
-          setVal()
-          setCheckBreak(false)
-          setCheckImprison(false)
-          setCheckEntangle(false)
-          let editArray = [...array]
-          //1st element
-          editArray[0].Gauge = 10000
-          editArray[0].AV = Math.ceil(editArray[0].Gauge/editArray[0].speed)
-          //2nd element
-          editArray[1].Gauge = 10000
-          editArray[1].AV = Math.ceil(editArray[1].Gauge/editArray[1].speed)
-          //3rd element
-          editArray[2].Gauge = 10000
-          editArray[2].AV = Math.ceil(editArray[2].Gauge/editArray[2].speed)
-          //4th element
-          editArray[3].Gauge = 10000
-          editArray[3].AV = Math.ceil(editArray[3].Gauge/editArray[3].speed)
-          //5th element
-          editArray[4].Gauge = 10000
-          editArray[4].AV = Math.ceil(editArray[4].Gauge/editArray[4].speed)
-          //enemy speed
-          editArray[editArray.findIndex(object => object.id === 5)].speed=125
           bubbleSort(editArray)
         }
 
@@ -176,23 +119,10 @@ export default function InputField(props){
               <input className={classes.checkbox} type='checkbox' name ='Entanglement' value='Entanglement' onChange={handleChange} checked={checkEntangle} disabled={selected === true && val !== 'Entanglement'}></input>
               <p className={classes.parameters}>Entanglement</p>
               </div>
-
-              <div className={classes.flexbtn}>
-              <div>
-              <button onClick={handleAdvance}>Advance Turn</button>
-              <button onClick={handleReset}>Reset</button>
-              </div>
-              </div>
               
               </div>
 
             </div>
-
-            <div>
-              <CharCardsMapper
-                TurnOrder = {array}/>
-            </div>
-
           </div>
           );
       }

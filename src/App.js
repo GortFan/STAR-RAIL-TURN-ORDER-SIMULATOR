@@ -1,4 +1,7 @@
+import CharCardsMapper from './components/CharCardsMapper'
 import InputField from './components/InputField'
+import { InputFieldContext } from './Contexts/InputFieldContext'
+import classes from './App.module.css'
 import Id1Img from './resources/1101.png'
 import Id2Img from './resources/1013.png'
 import Id3Img from './resources/1009.png'
@@ -44,13 +47,68 @@ function App() {
       Gauge: 10000
     },
   ]
-  console.log(turnOrder[0].path)
+
+  function handleReset(){
+    let editArray = [...turnOrder]
+    //1st element
+    editArray[0].Gauge = 10000
+    editArray[0].AV = Math.ceil(editArray[0].Gauge/editArray[0].speed)
+    //2nd element
+    editArray[1].Gauge = 10000
+    editArray[1].AV = Math.ceil(editArray[1].Gauge/editArray[1].speed)
+    //3rd element
+    editArray[2].Gauge = 10000
+    editArray[2].AV = Math.ceil(editArray[2].Gauge/editArray[2].speed)
+    //4th element
+    editArray[3].Gauge = 10000
+    editArray[3].AV = Math.ceil(editArray[3].Gauge/editArray[3].speed)
+    //5th element
+    editArray[4].Gauge = 10000
+    editArray[4].AV = Math.ceil(editArray[4].Gauge/editArray[4].speed)
+    //enemy speed
+    editArray[editArray.findIndex(object => object.id === 5)].speed=125
+  }
+
+  function handleAdvance(){
+    let editArray = [...turnOrder]
+    let multiplier = editArray[0].AV
+    //1st element
+    if(editArray[0].id===5){
+      editArray[0].speed=125
+    }
+    editArray[0].Gauge = 10000
+    editArray[0].AV = Math.ceil(editArray[0].Gauge/editArray[0].speed)
+    //2nd element
+    editArray[1].Gauge = editArray[1].Gauge - (editArray[1].speed*multiplier)
+    editArray[1].AV = Math.ceil(editArray[1].Gauge/editArray[1].speed)
+    //3rd element
+    editArray[2].Gauge = editArray[2].Gauge - (editArray[2].speed*multiplier)
+    editArray[2].AV = Math.ceil(editArray[2].Gauge/editArray[2].speed)
+    //4th element
+    editArray[3].Gauge = editArray[3].Gauge - (editArray[3].speed*multiplier)
+    editArray[3].AV = Math.ceil(editArray[3].Gauge/editArray[3].speed)
+    //5th element
+    editArray[4].Gauge = editArray[4].Gauge - (editArray[4].speed*multiplier)
+    editArray[4].AV = Math.ceil(editArray[4].Gauge/editArray[4].speed)
+  }
 
   return (
-    <div>
-      <InputField 
-      TurnOrder = {turnOrder}
-      />
+    <div className={classes.container}>
+      <div>
+              <CharCardsMapper
+                TurnOrder = {turnOrder}/>
+            </div>
+              <div>
+              <div>
+              <button onClick={handleAdvance}>Advance Turn</button>
+              <button onClick={handleReset}>Reset</button>
+              </div>
+              </div>
+              <InputFieldContext>
+              if(something === true)
+                {<InputField/>}
+              </InputFieldContext>
+              
     </div>
   );
 }
