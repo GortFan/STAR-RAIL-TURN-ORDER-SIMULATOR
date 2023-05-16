@@ -1,3 +1,3 @@
 import {createContext} from 'react'
 
-export const InputFieldContext = createContext({})
+export const InputFieldContext = createContext(null)

@@ -1,13 +1,16 @@
 import classes from './CharCards.module.css'
 import InputField from './InputField'
 import React from 'react'
+import {InputFieldContext} from '../Contexts/InputFieldContext'
+import {useContext} from 'react'
 
 export default function CharCards(props){
 
-    const [formId, setFormId] = React.useState()
+    const {form, setForm} = useContext(InputFieldContext)
+    // console.log({form})
 
     function handleClick(){
-        setFormId(props.id)
+        setForm(props)
     }
     return(
         <div className={classes.container} onClick={handleClick}>

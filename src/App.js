@@ -2,6 +2,8 @@ import CharCardsMapper from './components/CharCardsMapper'
 import InputField from './components/InputField'
 import { InputFieldContext } from './Contexts/InputFieldContext'
 import classes from './App.module.css'
+import React from 'react'
+
 import Id1Img from './resources/1101.png'
 import Id2Img from './resources/1013.png'
 import Id3Img from './resources/1009.png'
@@ -9,8 +11,9 @@ import Id4Img from './resources/1104.png'
 import Id5Img from './resources/Monster_1013020.png'
 
 function App() {
-
-  var turnOrder = [
+  
+  console.log('render')
+  let turnOrder = [
     {
       id: 5,
       path: Id5Img,
@@ -47,6 +50,8 @@ function App() {
       Gauge: 10000
     },
   ]
+
+  const [form, setForm] = React.useState(turnOrder)
 
   function handleReset(){
     let editArray = [...turnOrder]
@@ -92,24 +97,23 @@ function App() {
     editArray[4].AV = Math.ceil(editArray[4].Gauge/editArray[4].speed)
   }
 
+  React.useEffect(()=>{console.log('re-render')},[turnOrder])
+
   return (
+    <InputFieldContext.Provider value = {{form, setForm}}>
     <div className={classes.container}>
-      <div>
+            <div>
               <CharCardsMapper
                 TurnOrder = {turnOrder}/>
             </div>
-              <div>
-              <div>
+            <div className={classes.flexitem}>
+              <InputField/>
               <button onClick={handleAdvance}>Advance Turn</button>
               <button onClick={handleReset}>Reset</button>
-              </div>
-              </div>
-              <InputFieldContext>
-              if(something === true)
-                {<InputField/>}
-              </InputFieldContext>
-              
+            </div>
+
     </div>
+    </InputFieldContext.Provider>
   );
 }
 
