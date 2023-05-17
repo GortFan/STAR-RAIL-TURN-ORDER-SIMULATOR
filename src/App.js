@@ -13,7 +13,7 @@ import Id5Img from './resources/Monster_1013020.png'
 function App() {
   
   console.log('render')
-  let turnOrder = [
+  let sequenceData = {turnOrder: [
     {
       id: 5,
       path: Id5Img,
@@ -49,12 +49,13 @@ function App() {
       AV: 109,
       Gauge: 10000
     },
-  ]
+  ],
+  formType: 1}
 
-  const [form, setForm] = React.useState(turnOrder)
+  const [form, setForm] = React.useState(sequenceData)
 
   function handleReset(){
-    let editArray = [...turnOrder]
+    let editArray = [...sequenceData.turnOrder]
     //1st element
     editArray[0].Gauge = 10000
     editArray[0].AV = Math.ceil(editArray[0].Gauge/editArray[0].speed)
@@ -75,7 +76,7 @@ function App() {
   }
 
   function handleAdvance(){
-    let editArray = [...turnOrder]
+    let editArray = [...sequenceData.turnOrder]
     let multiplier = editArray[0].AV
     //1st element
     if(editArray[0].id===5){
@@ -97,14 +98,14 @@ function App() {
     editArray[4].AV = Math.ceil(editArray[4].Gauge/editArray[4].speed)
   }
 
-  React.useEffect(()=>{console.log('re-render')},[turnOrder])
+  React.useEffect(()=>{console.log('re-render')},[form])
 
   return (
     <InputFieldContext.Provider value = {{form, setForm}}>
     <div className={classes.container}>
             <div>
               <CharCardsMapper
-                TurnOrder = {turnOrder}/>
+                TurnOrder = {sequenceData}/>
             </div>
             <div className={classes.flexitem}>
               <InputField/>

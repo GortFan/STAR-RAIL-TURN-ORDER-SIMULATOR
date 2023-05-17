@@ -5,7 +5,6 @@ import {InputFieldContext} from '../Contexts/InputFieldContext'
 export default function EnemyInput(){
 
     const {form, setForm} = useContext(InputFieldContext)
-    console.log(form)
 
     const [selected, setSelected] = useState(false);
     const [val, setVal] = useState();

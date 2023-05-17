@@ -10,6 +10,7 @@ export default function InputField(props){
   const [array, setArray] = useState(props.TurnOrder)
  
   const {form, setForm} = useContext(InputFieldContext)
+  console.log(form)
 
         //Sorting array by AV
         function bubbleSort(editArray) {
@@ -43,8 +44,8 @@ export default function InputField(props){
         return (
           <div>
           {/* <h1>{form}</h1> */}
-          {form.id === 5 ? <EnemyInput/>:<></>}
-          {form.id === 1 || form.id === 2 || form.id === 3 || form.id === 4 ? <CharInput/>:<></>}
+          {form.formType === 5 ? <EnemyInput/>:<></>}
+          {form.formType === 1 || form.formType === 2 || form.formType === 3 || form.formType === 4 ? <CharInput/>:<></>}
           </div>
           );
       }
