@@ -6,7 +6,7 @@ import { act } from 'react-dom/test-utils'
 export default function CharInput(){
     const {actionOrder, setActionOrder, formType, setFormType, actionHistory, setActionHistory} = useContext(InputFieldContext)
     //Setting up linked list for printout of turn history
-
+    let charName = actionOrder[actionOrder.findIndex(object => object.id ===formType)].name
       function editSpeed(e){
         
         e.preventDefault()
@@ -124,8 +124,7 @@ export default function CharInput(){
 
       return(
         <div>
-          <div style={{color: 'white'}}>
-          {actionOrder[actionOrder.findIndex(object => object.id ===formType)].id}
+          <div style={{color: 'white'}}>{charName}
           </div>          
         <div className={classes.container}>
         <div className={classes.formflex}>

@@ -25,6 +25,7 @@ function App() {
       AV: 91,
       Gauge: 10000,
       id: 1,
+      name: 'Bronya',
       path: Id1Img,
     },
     {
@@ -32,6 +33,7 @@ function App() {
       AV: 100,
       Gauge: 10000,
       id: 2,
+      name: 'Herta',
       path: Id2Img,
     },
     {
@@ -39,6 +41,7 @@ function App() {
       AV: 103,
       Gauge: 10000,
       id: 3,
+      name: 'Asta',
       path: Id3Img,
     },
     {
@@ -46,6 +49,7 @@ function App() {
       AV: 109,
       Gauge: 10000,
       id: 4,
+      name: 'Gepardge',
       path: Id4Img,
     },
   ]
