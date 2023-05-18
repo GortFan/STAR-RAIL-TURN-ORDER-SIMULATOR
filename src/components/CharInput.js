@@ -131,7 +131,7 @@ export default function CharInput(){
       return(
         <div>
           <div style={{color: 'white'}}>
-          {actionOrder.findIndex(object => object.id ===formType)}
+          {actionOrder[actionOrder.findIndex(object => object.id ===formType)].id}
           </div>          
         <div className={classes.container}>
         <div className={classes.formflex}>
