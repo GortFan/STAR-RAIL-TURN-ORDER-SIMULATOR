@@ -129,7 +129,10 @@ export default function CharInput(){
               }
 
       return(
-        <div>          
+        <div>
+          <div style={{color: 'white'}}>
+          {actionOrder.findIndex(object => object.id ===formType)}
+          </div>          
         <div className={classes.container}>
         <div className={classes.formflex}>
           <div className={classes.speedflex}>

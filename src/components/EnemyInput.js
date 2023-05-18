@@ -136,7 +136,7 @@ export default function EnemyInput(){
               
       
     return(
-        <div>
+        <div><div style={{color: 'white'}}>Enemy</div>
          <div className={classes.speedflex}>
           <p className={classes.parameters}>Change Speed</p>
           <input type='number' name="Speed" onChange={changeSpeed}/>
@@ -160,7 +160,6 @@ export default function EnemyInput(){
         <div className={classes.speedflex}>
             <button onClick={handleActionAdvance}>Action Advance</button>
             <button onClick={handleAdvance}>Advance Turn</button>
-            <button onClick={handleReset}>Reset</button>
         </div>
         </div>
     )
