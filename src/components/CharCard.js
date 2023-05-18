@@ -6,17 +6,15 @@ import {useContext} from 'react'
 
 export default function CharCards(props){
 
-    const {form, setForm} = useContext(InputFieldContext)
+    const {actionOrder, setActionOrder, formType, setFormType} = useContext(InputFieldContext)
 
     function handleClick(){
-        let temp = form
-        temp.formType = props.id
-        setForm(temp)
-        console.log(form)
+        let temp = formType
+        temp = props.id
+        setFormType(temp)
     }
     
-    React.useEffect(()=>{console.log('re-render')},[form])
-    
+
     return(
         <div className={classes.container} onClick={handleClick}>
             <div className={classes.card}>
@@ -26,7 +24,6 @@ export default function CharCards(props){
                 <div className={classes.values}>Speed: {props.speed}</div>
                 <div className={classes.values}>AV: {props.AV}</div>
                 <div className={classes.values}>Gauge: {props.gauge}</div>
-                <div>{form.formType}</div>
             </div>
         </div>
     )

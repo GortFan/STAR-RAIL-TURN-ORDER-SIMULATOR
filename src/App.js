@@ -12,8 +12,7 @@ import Id5Img from './resources/Monster_1013020.png'
 
 function App() {
   
-  console.log('render')
-  let sequenceData = {turnOrder: [
+  let ActionOrder = [
     {
       id: 5,
       path: Id5Img,
@@ -49,39 +48,20 @@ function App() {
       AV: 109,
       Gauge: 10000
     },
-  ],
-  formType: 1}
+  ]
 
-  const [form, setForm] = React.useState(sequenceData)
+
+  const [actionOrder, setActionOrder] = React.useState(ActionOrder)
+  const [formType, setFormType] = React.useState(1)
 
   function handleReset(){
-    let editArray = [...sequenceData.turnOrder]
-    //1st element
-    editArray[0].Gauge = 10000
-    editArray[0].AV = Math.ceil(editArray[0].Gauge/editArray[0].speed)
-    //2nd element
-    editArray[1].Gauge = 10000
-    editArray[1].AV = Math.ceil(editArray[1].Gauge/editArray[1].speed)
-    //3rd element
-    editArray[2].Gauge = 10000
-    editArray[2].AV = Math.ceil(editArray[2].Gauge/editArray[2].speed)
-    //4th element
-    editArray[3].Gauge = 10000
-    editArray[3].AV = Math.ceil(editArray[3].Gauge/editArray[3].speed)
-    //5th element
-    editArray[4].Gauge = 10000
-    editArray[4].AV = Math.ceil(editArray[4].Gauge/editArray[4].speed)
-    //enemy speed
-    editArray[editArray.findIndex(object => object.id === 5)].speed=125
+    setActionOrder(ActionOrder)
   }
 
   function handleAdvance(){
-    let editArray = [...sequenceData.turnOrder]
+    let editArray = [...actionOrder]
     let multiplier = editArray[0].AV
     //1st element
-    if(editArray[0].id===5){
-      editArray[0].speed=125
-    }
     editArray[0].Gauge = 10000
     editArray[0].AV = Math.ceil(editArray[0].Gauge/editArray[0].speed)
     //2nd element
@@ -96,21 +76,49 @@ function App() {
     //5th element
     editArray[4].Gauge = editArray[4].Gauge - (editArray[4].speed*multiplier)
     editArray[4].AV = Math.ceil(editArray[4].Gauge/editArray[4].speed)
+
+    bubbleSort(editArray)
   }
 
-  React.useEffect(()=>{console.log('re-render')},[form])
+                //Sorting array by AV
+                function bubbleSort(turnOrder) {
+                  let i, j;
+                  let len = turnOrder.length;
+                
+                  let isSwapped = false;
+                
+                   for (i = 0; i < len; i++) {
+                
+                      isSwapped = false;
+                
+                      for (j = 0; j < len-1; j++) {
+                          if (turnOrder[j].AV > turnOrder[j + 1].AV) {
+                              let temp = turnOrder[j]
+                              turnOrder[j] = turnOrder[j + 1];
+                              turnOrder[j + 1] = temp;
+                             isSwapped = true;
+                          }
+                      }
+        
+                      if (!isSwapped) {
+                          break;
+                      }
+                  }
+                  setActionOrder(turnOrder)
+                }
+
+  React.useEffect(()=>{console.log('re-render')})
 
   return (
-    <InputFieldContext.Provider value = {{form, setForm}}>
+    <InputFieldContext.Provider value = {{actionOrder, setActionOrder, formType, setFormType}}>
     <div className={classes.container}>
             <div>
               <CharCardsMapper
-                TurnOrder = {sequenceData}/>
+                TurnOrder = {actionOrder}/>
             </div>
             <div className={classes.flexitem}>
               <InputField/>
-              <button onClick={handleAdvance}>Advance Turn</button>
-              <button onClick={handleReset}>Reset</button>
+
             </div>
 
     </div>

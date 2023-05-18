@@ -4,7 +4,25 @@ import {InputFieldContext} from '../Contexts/InputFieldContext'
 
 export default function EnemyInput(){
 
-    const {form, setForm} = useContext(InputFieldContext)
+    const {actionOrder, setActionOrder, formType, setFormType} = useContext(InputFieldContext)
+
+    function changeSpeed(e) {
+        //validation
+        if(e.target.value <= 0 || isNaN(e.target.value) || e.target.value > 999){
+          alert('invalid input');
+        }
+        else{
+          calcChar(Number(e.target.value))
+        }
+      }
+
+      function calcChar(speed){
+        //Character Math
+        let editArray = [...actionOrder]
+        editArray[editArray.findIndex(object => object.id ===formType)].speed = speed
+        editArray[editArray.findIndex(object => object.id ===formType)].AV = Math.ceil(10000/editArray[editArray.findIndex(object => object.id ===formType)].speed)
+        bubbleSort(editArray)
+      }
 
     const [selected, setSelected] = useState(false);
     const [val, setVal] = useState();
@@ -14,42 +32,116 @@ export default function EnemyInput(){
             //Logic for disabling and re-enabling checkboxes 
             function handleChange(e){
                 setSelected(!selected)
+                console.log(selected)
                 setVal(e.target.value)
-                //calcEnemy(e.target.value)
+                console.log(e.target.value)
+                calcEnemy(e.target.value)
               }
 
-            // function calcEnemy(debuff){
-            // let editArray = [...array]
-            // let enemyIndex = editArray.findIndex(object => object.id === 5)
-            // if(debuff === 'Break'){
-            //     editArray[enemyIndex].Gauge = 10000+(10000*(0.25))
-            //     editArray[enemyIndex].AV = Math.ceil(editArray[enemyIndex].Gauge/editArray[enemyIndex].speed)
-            //     setCheckBreak(true)
-            // }
-            // if(debuff === 'Imprisonment'){
-            //     editArray[enemyIndex].speed = Math.ceil((editArray[enemyIndex].speed)*(1-0.1))
-            //     editArray[enemyIndex].Gauge = 10000+(10000*(0.3*(1+0.15))) //0.15 is break effect %
-            //     editArray[enemyIndex].AV = Math.ceil(editArray[enemyIndex].Gauge/editArray[enemyIndex].speed)
-            //     setCheckImprison(true)
-            // }
-            // if(debuff === 'Entanglement'){
-            //     editArray[enemyIndex].Gauge = 10000+(10000*(0.3*(1+0.15))) //0.15 is break effect %
-            //     editArray[enemyIndex].AV = Math.ceil(editArray[enemyIndex].Gauge/editArray[enemyIndex].speed)
-            //     setCheckEntangle(true)
-            // }
-            // if(selected === true){
-            //     editArray[enemyIndex].AV = 80
-            //     editArray[enemyIndex].Gauge = 10000
-            //     editArray[enemyIndex].speed = 125
-            //     setCheckBreak(false)
-            //     setCheckImprison(false)
-            //     setCheckEntangle(false)
-            // }
-            // // bubbleSort(editArray)
-            // }
+            function calcEnemy(debuff){
+            let editArray = [...actionOrder]
+            let enemyIndex = editArray.findIndex(object => object.id === 5)
+            if(debuff === 'Break'){
+                editArray[enemyIndex].Gauge = 10000+(10000*(0.25))
+                editArray[enemyIndex].AV = Math.ceil(editArray[enemyIndex].Gauge/editArray[enemyIndex].speed)
+                setCheckBreak(true)
+            }
+            if(debuff === 'Imprisonment'){
+                editArray[enemyIndex].speed = Math.ceil((editArray[enemyIndex].speed)*(1-0.1))
+                editArray[enemyIndex].Gauge = 10000+(10000*(0.3*(1+0.15))) //0.15 is break effect %
+                editArray[enemyIndex].AV = Math.ceil(editArray[enemyIndex].Gauge/editArray[enemyIndex].speed)
+                setCheckImprison(true)
+            }
+            if(debuff === 'Entanglement'){
+                editArray[enemyIndex].Gauge = 10000+(10000*(0.3*(1+0.15))) //0.15 is break effect %
+                editArray[enemyIndex].AV = Math.ceil(editArray[enemyIndex].Gauge/editArray[enemyIndex].speed)
+                setCheckEntangle(true)
+            }
+            if(selected === true){
+                editArray[enemyIndex].AV = 80
+                editArray[enemyIndex].Gauge = 10000
+                //the speed value that it sets it to must be a default (currently manually set to 125 but user can decide what the default is on their own later)
+                editArray[enemyIndex].speed = 125
+                setCheckBreak(false)
+                setCheckImprison(false)
+                setCheckEntangle(false)
+            }
+             bubbleSort(editArray)
+            }
+
+            function handleActionAdvance(){
+                let editArray = [...actionOrder]
+                editArray[editArray.findIndex(object => object.id ===formType)].Gauge=0
+                editArray[editArray.findIndex(object => object.id ===formType)].AV=editArray[editArray.findIndex(object => object.id ===formType)].Gauge/editArray[editArray.findIndex(object => object.id ===formType)].speed
+                bubbleSort(editArray)
+              }
+
+              function handleReset(){
+                console.log('under development (will be creating a default that can be set by user and reset will set to that default)')
+              }
+            
+              function handleAdvance(){
+                let editArray = [...actionOrder]
+                let multiplier = editArray[0].AV
+                setSelected(false)
+                setCheckBreak(false)
+                setCheckEntangle(false)
+                setCheckImprison(false)
+                //1st element
+                //for any unit who is about to go to the back of the order, the speed must be set back to the default value therefore a check must be made on this line
+                editArray[0].Gauge = 10000
+                editArray[0].AV = Math.ceil(editArray[0].Gauge/editArray[0].speed)
+                //2nd element
+                editArray[1].Gauge = editArray[1].Gauge - (editArray[1].speed*multiplier)
+                editArray[1].AV = Math.ceil(editArray[1].Gauge/editArray[1].speed)
+                //3rd element
+                editArray[2].Gauge = editArray[2].Gauge - (editArray[2].speed*multiplier)
+                editArray[2].AV = Math.ceil(editArray[2].Gauge/editArray[2].speed)
+                //4th element
+                editArray[3].Gauge = editArray[3].Gauge - (editArray[3].speed*multiplier)
+                editArray[3].AV = Math.ceil(editArray[3].Gauge/editArray[3].speed)
+                //5th element
+                editArray[4].Gauge = editArray[4].Gauge - (editArray[4].speed*multiplier)
+                editArray[4].AV = Math.ceil(editArray[4].Gauge/editArray[4].speed)
+            
+                bubbleSort(editArray)
+              }
+
+                            //Sorting array by AV
+                            function bubbleSort(turnOrder) {
+                                let i, j;
+                                let len = turnOrder.length;
+                              
+                                let isSwapped = false;
+                              
+                                 for (i = 0; i < len; i++) {
+                              
+                                    isSwapped = false;
+                              
+                                    for (j = 0; j < len-1; j++) {
+                                        if (turnOrder[j].AV > turnOrder[j + 1].AV) {
+                                            let temp = turnOrder[j]
+                                            turnOrder[j] = turnOrder[j + 1];
+                                            turnOrder[j + 1] = temp;
+                                           isSwapped = true;
+                                        }
+                                    }
+                      
+                                    if (!isSwapped) {
+                                        break;
+                                    }
+                                }
+                                setActionOrder(turnOrder)
+                              }
+              
       
     return(
         <div>
+         <div className={classes.speedflex}>
+          <p className={classes.parameters}>Change Speed</p>
+          <input type='number' name="Speed" onChange={changeSpeed}/>
+          </div>
+
         <div className={classes.delayflex}>
             <input className={classes.checkbox} type='checkbox' name ='Break' value='Break' onChange={handleChange} checked={checkBreak} disabled={selected === true && val !== 'Break'}></input>
             <p className={classes.parameters}>Break</p>
@@ -63,6 +155,12 @@ export default function EnemyInput(){
         <div className={classes.delayflex}>
             <input className={classes.checkbox} type='checkbox' name ='Entanglement' value='Entanglement' onChange={handleChange} checked={checkEntangle} disabled={selected === true && val !== 'Entanglement'}></input>
             <p className={classes.parameters}>Entanglement</p>
+        </div>
+        
+        <div className={classes.speedflex}>
+            <button onClick={handleActionAdvance}>Action Advance</button>
+            <button onClick={handleAdvance}>Advance Turn</button>
+            <button onClick={handleReset}>Reset</button>
         </div>
         </div>
     )
