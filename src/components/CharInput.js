@@ -18,7 +18,6 @@ export default function CharInput(){
 
         //Character Math
         let editArray = [...actionOrder]
-        console.log(formJson.Speed)
         editArray[editArray.findIndex(object => object.id ===formType)].speed = Number(formJson.Speed)
         editArray[editArray.findIndex(object => object.id ===formType)].AV = Math.ceil(10000/editArray[editArray.findIndex(object => object.id ===formType)].speed)
         bubbleSort(editArray)
@@ -61,6 +60,9 @@ export default function CharInput(){
         editArray[editArray.findIndex(object => object.id ===formType)].Gauge=0
         editArray[editArray.findIndex(object => object.id ===formType)].AV=editArray[editArray.findIndex(object => object.id ===formType)].Gauge/editArray[editArray.findIndex(object => object.id ===formType)].speed
         bubbleSort(editArray)
+        let temp = actionHistory
+        temp.push(actionOrder)
+        setActionHistory(temp)
       }
 
       
@@ -88,6 +90,9 @@ export default function CharInput(){
         editArray[4].AV = Math.ceil(editArray[4].Gauge/editArray[4].speed)
         
         bubbleSort(editArray)
+        let temp = actionHistory
+        temp.push(actionOrder)
+        setActionHistory(temp)
       }
 
               //Sorting array by AV
@@ -115,9 +120,6 @@ export default function CharInput(){
                     }
                 }
                 setActionOrder(turnOrder)
-                let temp = actionHistory
-                temp.push(turnOrder)
-                setActionHistory(temp)
               }
 
       return(

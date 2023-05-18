@@ -70,6 +70,9 @@ export default function EnemyInput(){
                 editArray[editArray.findIndex(object => object.id ===formType)].Gauge=0
                 editArray[editArray.findIndex(object => object.id ===formType)].AV=editArray[editArray.findIndex(object => object.id ===formType)].Gauge/editArray[editArray.findIndex(object => object.id ===formType)].speed
                 bubbleSort(editArray)
+                let temp = actionHistory
+                temp.push(actionOrder)
+                setActionHistory(temp)
               }
 
               function handleReset(){
@@ -101,6 +104,9 @@ export default function EnemyInput(){
                 editArray[4].AV = Math.ceil(editArray[4].Gauge/editArray[4].speed)
             
                 bubbleSort(editArray)
+                let temp = actionHistory
+                temp.push(actionOrder)
+                setActionHistory(temp)
               }
 
                             //Sorting array by AV
@@ -128,9 +134,6 @@ export default function EnemyInput(){
                                     }
                                 }
                                 setActionOrder(turnOrder)
-                                let temp = actionHistory
-                                temp.push(turnOrder)
-                                setActionHistory(temp)
                               }
               
       
