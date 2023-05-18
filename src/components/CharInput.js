@@ -1,47 +1,36 @@
 import React, {useState, useContext} from 'react'
 import classes from './InputField.module.css'
 import {InputFieldContext} from '../Contexts/InputFieldContext'
+import { act } from 'react-dom/test-utils'
 
 export default function CharInput(){
-    const {actionOrder, setActionOrder, formType, setFormType} = useContext(InputFieldContext)
-    function changeSpeed(e) {
-      if(e.target.name==='Speed'){
-        //validation
-        if(e.target.value <= 0 || isNaN(e.target.value) || e.target.value > 999){
-          alert('invalid input');
-        }
-        else{
-          editSpeed(Number(e.target.value))
-        }
-      }
-      if(e.target.name==='Speed Boost'){
-                //validation
-        if(e.target.value < -50 || isNaN(e.target.value) || e.target.value > 50){
-          alert('invalid input');
-        }
-        else{
-          applySpeedBoost(Number(e.target.value))
-        }
-      }
-      }
+    const {actionOrder, setActionOrder, formType, setFormType, actionHistory, setActionHistory} = useContext(InputFieldContext)
+    //Setting up linked list for printout of turn history
 
-      function editSpeed(speed){
+      function editSpeed(e){
+        
+        e.preventDefault()
+
+        const form = e.target
+        const formData = new FormData(form)
+
+        const formJson = Object.fromEntries(formData.entries())
+
         //Character Math
         let editArray = [...actionOrder]
-        editArray[editArray.findIndex(object => object.id ===formType)].speed = speed
+        console.log(formJson.Speed)
+        editArray[editArray.findIndex(object => object.id ===formType)].speed = Number(formJson.Speed)
         editArray[editArray.findIndex(object => object.id ===formType)].AV = Math.ceil(10000/editArray[editArray.findIndex(object => object.id ===formType)].speed)
         bubbleSort(editArray)
       }
 
       function applySpeedBoost(e){
-        // Prevent the browser from reloading the page
+
         e.preventDefault()
 
-        // Read the form data
         const form = e.target
         const formData = new FormData(form)
 
-        // Or you can work with it as a plain object:
         const formJson = Object.fromEntries(formData.entries())
 
         let editArray = [...actionOrder]
@@ -79,7 +68,7 @@ export default function CharInput(){
         console.log('under development (will be creating a default that can be set by user and reset will set to that default)')
       }
     
-      function handleAdvance(){
+      function handleAdvance(){  
         let editArray = [...actionOrder]
         let multiplier = editArray[0].AV
         //1st element
@@ -97,7 +86,7 @@ export default function CharInput(){
         //5th element
         editArray[4].Gauge = editArray[4].Gauge - (editArray[4].speed*multiplier)
         editArray[4].AV = Math.ceil(editArray[4].Gauge/editArray[4].speed)
-    
+        
         bubbleSort(editArray)
       }
 
@@ -126,6 +115,9 @@ export default function CharInput(){
                     }
                 }
                 setActionOrder(turnOrder)
+                let temp = actionHistory
+                temp.push(turnOrder)
+                setActionHistory(temp)
               }
 
       return(
@@ -136,8 +128,11 @@ export default function CharInput(){
         <div className={classes.container}>
         <div className={classes.formflex}>
           <div className={classes.speedflex}>
+          <form method='post' onSubmit={editSpeed}>
           <p className={classes.parameters}>Change Speed</p>
-          <input type='number' name="Speed" onChange={changeSpeed}/>
+          <input type='number' name="Speed"/>
+          <button type='submit'>Apply Changes</button>
+          </form>
           </div>
         </div>
       </div>

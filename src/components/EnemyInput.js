@@ -4,25 +4,23 @@ import {InputFieldContext} from '../Contexts/InputFieldContext'
 
 export default function EnemyInput(){
 
-    const {actionOrder, setActionOrder, formType, setFormType} = useContext(InputFieldContext)
+    const {actionOrder, setActionOrder, formType, setFormType, actionHistory, setActionHistory} = useContext(InputFieldContext)
 
-    function changeSpeed(e) {
-        //validation
-        if(e.target.value <= 0 || isNaN(e.target.value) || e.target.value > 999){
-          alert('invalid input');
-        }
-        else{
-          calcChar(Number(e.target.value))
-        }
-      }
+    function editSpeed(e){
+        
+      e.preventDefault()
 
-      function calcChar(speed){
-        //Character Math
-        let editArray = [...actionOrder]
-        editArray[editArray.findIndex(object => object.id ===formType)].speed = speed
-        editArray[editArray.findIndex(object => object.id ===formType)].AV = Math.ceil(10000/editArray[editArray.findIndex(object => object.id ===formType)].speed)
-        bubbleSort(editArray)
-      }
+      const form = e.target
+      const formData = new FormData(form)
+
+      const formJson = Object.fromEntries(formData.entries())
+
+      //Character Math
+      let editArray = [...actionOrder]
+      editArray[editArray.findIndex(object => object.id ===formType)].speed = Number(formJson.Speed)
+      editArray[editArray.findIndex(object => object.id ===formType)].AV = Math.ceil(10000/editArray[editArray.findIndex(object => object.id ===formType)].speed)
+      bubbleSort(editArray)
+    }
 
     const [selected, setSelected] = useState(false);
     const [val, setVal] = useState();
@@ -32,9 +30,7 @@ export default function EnemyInput(){
             //Logic for disabling and re-enabling checkboxes 
             function handleChange(e){
                 setSelected(!selected)
-                console.log(selected)
                 setVal(e.target.value)
-                console.log(e.target.value)
                 calcEnemy(e.target.value)
               }
 
@@ -132,14 +128,20 @@ export default function EnemyInput(){
                                     }
                                 }
                                 setActionOrder(turnOrder)
+                                let temp = actionHistory
+                                temp.push(turnOrder)
+                                setActionHistory(temp)
                               }
               
       
     return(
         <div><div style={{color: 'white'}}>Enemy</div>
          <div className={classes.speedflex}>
+         <form method='post' onSubmit={editSpeed}>
           <p className={classes.parameters}>Change Speed</p>
-          <input type='number' name="Speed" onChange={changeSpeed}/>
+          <input type='number' name="Speed"/>
+          <button type='submit'>Apply Changes</button>
+          </form>
           </div>
 
         <div className={classes.delayflex}>
