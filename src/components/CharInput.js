@@ -72,13 +72,13 @@ export default function CharInput(){
     
       function handleAdvance(){  
         let editArray = [...actionOrder]
-        let multiplier = editArray[0].AV
+        let multiplier = editArray[1].AV
         //1st element
         editArray[0].Gauge = 10000
         editArray[0].AV = Math.ceil(editArray[0].Gauge/editArray[0].speed)
         //2nd element
-        editArray[1].Gauge = editArray[1].Gauge - (editArray[1].speed*multiplier)
-        editArray[1].AV = Math.ceil(editArray[1].Gauge/editArray[1].speed)
+        editArray[1].Gauge = 0
+        editArray[1].AV = 0
         //3rd element
         editArray[2].Gauge = editArray[2].Gauge - (editArray[2].speed*multiplier)
         editArray[2].AV = Math.ceil(editArray[2].Gauge/editArray[2].speed)
