@@ -1,0 +1,34 @@
+.container{
+    height: 200px;
+    Overflow-y: scroll;
+    background-color: rgb(15, 15, 15);
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.7);
+    border: 1.5px solid rgb(139, 139, 139);
+
+}
+
+.text{
+    color: rgb(241, 241, 241);
+}
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: rgb(15, 15, 15);
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(241, 241, 241);
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #8a8a8a; 
+  }

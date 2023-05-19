@@ -124,7 +124,7 @@ export default function CharInput(){
 
       return(
         <div>
-          <div style={{color: 'white'}}>{charName}
+          <div className={classes.label}>{charName}
           </div>          
         <div className={classes.container}>
         <div className={classes.formflex}>

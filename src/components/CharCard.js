@@ -16,8 +16,8 @@ export default function CharCards(props){
     
 
     return(
-        <div className={classes.container} onClick={handleClick}>
-            <div className={classes.card}>
+        <div className={classes.container}>
+            <div className={classes.card} onClick={handleClick}>
             <img src={props.path} alt=''/>
             </div>
             <div className={classes.valcontainer}>

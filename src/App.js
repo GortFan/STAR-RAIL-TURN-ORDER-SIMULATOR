@@ -1,5 +1,7 @@
 import CharCardsMapper from './components/CharCardsMapper'
 import InputField from './components/InputField'
+import ChangeLog from './components/ChangeLog'
+
 import { InputFieldContext } from './Contexts/InputFieldContext'
 import classes from './App.module.css'
 import React from 'react'
@@ -85,6 +87,9 @@ function App() {
             <div>
               <button onClick = {exportActionHistory}>Generate Action History</button>
             </div>
+    </div>
+    <div>
+      <ChangeLog/>
     </div>
     </InputFieldContext.Provider>
   );

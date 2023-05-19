@@ -138,7 +138,7 @@ export default function EnemyInput(){
               
       
     return(
-        <div><div style={{color: 'white'}}>Enemy</div>
+        <div><div className={classes.label}>Enemy</div>
          <div className={classes.speedflex}>
          <form method='post' onSubmit={editSpeed}>
           <p className={classes.parameters}>Change Speed</p>

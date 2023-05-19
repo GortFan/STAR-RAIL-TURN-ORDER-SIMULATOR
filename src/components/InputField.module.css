@@ -106,3 +106,9 @@ button:hover {
 .checkbox:checked {
     background: #844fd9 -19px top no-repeat;
   }
+
+.label{
+    color:rgb(241, 241, 241);
+    font-size: 38px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
