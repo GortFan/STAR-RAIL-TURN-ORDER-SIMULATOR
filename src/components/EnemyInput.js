@@ -34,6 +34,24 @@ export default function EnemyInput(){
                 calcEnemy(e.target.value)
               }
 
+              function handleGaugeChange(e){
+                // Prevent the browser from reloading the page
+                e.preventDefault()
+        
+                // Read the form data
+                const form = e.target
+                const formData = new FormData(form)
+        
+                // Or you can work with it as a plain object:
+                const formJson = Object.fromEntries(formData.entries())
+        
+                let editArray = [...actionOrder]
+                editArray[editArray.findIndex(object => object.id ===formType)].Gauge = editArray[editArray.findIndex(object => object.id ===formType)].Gauge+Number(formJson.GaugeDelay)
+                editArray[editArray.findIndex(object => object.id ===formType)].AV = Math.ceil(editArray[editArray.findIndex(object => object.id ===formType)].Gauge/editArray[editArray.findIndex(object => object.id ===formType)].speed)
+                bubbleSort(editArray)
+              }
+            
+
             function calcEnemy(debuff){
             let editArray = [...actionOrder]
             let enemyIndex = editArray.findIndex(object => object.id === 5)
@@ -81,7 +99,7 @@ export default function EnemyInput(){
             
               function handleAdvance(){
                 let editArray = [...actionOrder]
-                let multiplier = editArray[0].AV
+                let multiplier = editArray[1].AV
                 setSelected(false)
                 setCheckBreak(false)
                 setCheckEntangle(false)
@@ -146,6 +164,13 @@ export default function EnemyInput(){
           <button type='submit'>Apply Changes</button>
           </form>
           </div>
+          <div className={classes.speedflex}>
+        <form method='post' onSubmit={handleGaugeChange}>
+          <p className={classes.parameters}>Add to Gauge</p>
+          <input type='number' name="GaugeDelay"/>
+          <button type='submit'>Apply Changes</button>
+        </form>
+      </div>
 
         <div className={classes.delayflex}>
             <input className={classes.checkbox} type='checkbox' name ='Break' value='Break' onChange={handleChange} checked={checkBreak} disabled={selected === true && val !== 'Break'}></input>
