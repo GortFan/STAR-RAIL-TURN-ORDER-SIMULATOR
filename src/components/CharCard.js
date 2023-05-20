@@ -21,9 +21,9 @@ export default function CharCards(props){
             <img src={props.path} alt=''/>
             </div>
             <div className={classes.valcontainer}>
-                <div className={classes.values}>Speed: {props.speed}</div>
-                <div className={classes.values}>AV: {props.AV}</div>
-                <div className={classes.values}>Gauge: {props.gauge}</div>
+                <div className={classes.values}>Speed: {Math.floor(props.speed)}</div>
+                <div className={classes.values}>AV: {Math.ceil(props.AV)}</div>
+                <div className={classes.values}>Gauge: {Math.floor(props.gauge)}</div>
             </div>
         </div>
     )

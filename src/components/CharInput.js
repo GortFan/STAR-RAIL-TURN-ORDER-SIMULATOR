@@ -19,7 +19,7 @@ export default function CharInput(){
         //Character Math
         let editArray = [...actionOrder]
         editArray[editArray.findIndex(object => object.id ===formType)].speed = Number(formJson.Speed)
-        editArray[editArray.findIndex(object => object.id ===formType)].AV = Math.ceil(10000/editArray[editArray.findIndex(object => object.id ===formType)].speed)
+        editArray[editArray.findIndex(object => object.id ===formType)].AV = 10000/editArray[editArray.findIndex(object => object.id ===formType)].speed
         bubbleSort(editArray)
       }
 
@@ -34,7 +34,7 @@ export default function CharInput(){
 
         let editArray = [...actionOrder]
         editArray[editArray.findIndex(object => object.id ===formType)].speed = editArray[editArray.findIndex(object => object.id ===formType)].speed+Number(formJson.SpeedBoost)
-        editArray[editArray.findIndex(object => object.id ===formType)].AV = Math.ceil(editArray[editArray.findIndex(object => object.id ===formType)].Gauge/editArray[editArray.findIndex(object => object.id ===formType)].speed)
+        editArray[editArray.findIndex(object => object.id ===formType)].AV = editArray[editArray.findIndex(object => object.id ===formType)].Gauge/editArray[editArray.findIndex(object => object.id ===formType)].speed
         bubbleSort(editArray)
       }
 
@@ -51,7 +51,7 @@ export default function CharInput(){
 
         let editArray = [...actionOrder]
         editArray[editArray.findIndex(object => object.id ===formType)].Gauge = editArray[editArray.findIndex(object => object.id ===formType)].Gauge+Number(formJson.GaugeDelay)
-        editArray[editArray.findIndex(object => object.id ===formType)].AV = Math.ceil(editArray[editArray.findIndex(object => object.id ===formType)].Gauge/editArray[editArray.findIndex(object => object.id ===formType)].speed)
+        editArray[editArray.findIndex(object => object.id ===formType)].AV = editArray[editArray.findIndex(object => object.id ===formType)].Gauge/editArray[editArray.findIndex(object => object.id ===formType)].speed
         bubbleSort(editArray)
       }
     
@@ -73,22 +73,38 @@ export default function CharInput(){
       function handleAdvance(){  
         let editArray = [...actionOrder]
         let multiplier = editArray[1].AV
+        
+        //Edge case of identical AV
+        if(editArray[0].AV===editArray[1,2,3].AV || editArray[0].AV===editArray[1,2].AV || editArray[0].AV===editArray[1].AV){
+          console.log('hi')
+          for(let i = 1; i < 5; i++){
+            if(editArray[0].id > editArray[i].id){
+              console.log(i)
+              editArray[i].Gauge = 10000
+              editArray[i].AV = editArray[i].Gauge/editArray[i].speed
+              break
+            }
+          }
+        }
+
+        //Typical case
+        else{
         //1st element
         editArray[0].Gauge = 10000
-        editArray[0].AV = Math.ceil(editArray[0].Gauge/editArray[0].speed)
+        editArray[0].AV = editArray[0].Gauge/editArray[0].speed
         //2nd element
         editArray[1].Gauge = 0
         editArray[1].AV = 0
         //3rd element
         editArray[2].Gauge = editArray[2].Gauge - (editArray[2].speed*multiplier)
-        editArray[2].AV = Math.ceil(editArray[2].Gauge/editArray[2].speed)
+        editArray[2].AV = editArray[2].Gauge/editArray[2].speed
         //4th element
         editArray[3].Gauge = editArray[3].Gauge - (editArray[3].speed*multiplier)
-        editArray[3].AV = Math.ceil(editArray[3].Gauge/editArray[3].speed)
+        editArray[3].AV = editArray[3].Gauge/editArray[3].speed
         //5th element
         editArray[4].Gauge = editArray[4].Gauge - (editArray[4].speed*multiplier)
-        editArray[4].AV = Math.ceil(editArray[4].Gauge/editArray[4].speed)
-        
+        editArray[4].AV = editArray[4].Gauge/editArray[4].speed
+      }
         bubbleSort(editArray)
         let temp = actionHistory
         temp.push(actionOrder)
@@ -131,7 +147,7 @@ export default function CharInput(){
           <div className={classes.speedflex}>
           <form method='post' onSubmit={editSpeed}>
           <p className={classes.parameters}>Change Speed</p>
-          <input type='number' name="Speed"/>
+          <input type='float' name="Speed"/>
           <button type='submit'>Apply Changes</button>
           </form>
           </div>
@@ -141,7 +157,7 @@ export default function CharInput(){
       <div className={classes.speedflex}>
         <form method='post' onSubmit={applySpeedBoost}>
           <p className={classes.parameters}>Modify Speed (Flat)</p>
-          <input type='number' name="SpeedBoost"/>
+          <input type='float' name="SpeedBoost"/>
           <button type='submit'>Apply Changes</button>
         </form>
       </div>
@@ -149,7 +165,7 @@ export default function CharInput(){
       <div className={classes.speedflex}>
         <form method='post' onSubmit={handleGaugeChange}>
           <p className={classes.parameters}>Add to Gauge</p>
-          <input type='number' name="GaugeDelay"/>
+          <input type='float' name="GaugeDelay"/>
           <button type='submit'>Apply Changes</button>
         </form>
       </div>

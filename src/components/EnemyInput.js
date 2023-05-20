@@ -18,7 +18,7 @@ export default function EnemyInput(){
       //Character Math
       let editArray = [...actionOrder]
       editArray[editArray.findIndex(object => object.id ===formType)].speed = Number(formJson.Speed)
-      editArray[editArray.findIndex(object => object.id ===formType)].AV = Math.ceil(10000/editArray[editArray.findIndex(object => object.id ===formType)].speed)
+      editArray[editArray.findIndex(object => object.id ===formType)].AV = 10000/editArray[editArray.findIndex(object => object.id ===formType)].speed
       bubbleSort(editArray)
     }
 
@@ -47,7 +47,7 @@ export default function EnemyInput(){
         
                 let editArray = [...actionOrder]
                 editArray[editArray.findIndex(object => object.id ===formType)].Gauge = editArray[editArray.findIndex(object => object.id ===formType)].Gauge+Number(formJson.GaugeDelay)
-                editArray[editArray.findIndex(object => object.id ===formType)].AV = Math.ceil(editArray[editArray.findIndex(object => object.id ===formType)].Gauge/editArray[editArray.findIndex(object => object.id ===formType)].speed)
+                editArray[editArray.findIndex(object => object.id ===formType)].AV = editArray[editArray.findIndex(object => object.id ===formType)].Gauge/editArray[editArray.findIndex(object => object.id ===formType)].speed
                 bubbleSort(editArray)
               }
             
@@ -57,18 +57,18 @@ export default function EnemyInput(){
             let enemyIndex = editArray.findIndex(object => object.id === 5)
             if(debuff === 'Break'){
                 editArray[enemyIndex].Gauge = 10000+(10000*(0.25))
-                editArray[enemyIndex].AV = Math.ceil(editArray[enemyIndex].Gauge/editArray[enemyIndex].speed)
+                editArray[enemyIndex].AV = editArray[enemyIndex].Gauge/editArray[enemyIndex].speed
                 setCheckBreak(true)
             }
             if(debuff === 'Imprisonment'){
-                editArray[enemyIndex].speed = Math.ceil((editArray[enemyIndex].speed)*(1-0.1))
+                editArray[enemyIndex].speed = (editArray[enemyIndex].speed)*(1-0.1)
                 editArray[enemyIndex].Gauge = 10000+(10000*(0.3*(1+0.15))) //0.15 is break effect %
-                editArray[enemyIndex].AV = Math.ceil(editArray[enemyIndex].Gauge/editArray[enemyIndex].speed)
+                editArray[enemyIndex].AV = editArray[enemyIndex].Gauge/editArray[enemyIndex].speed
                 setCheckImprison(true)
             }
             if(debuff === 'Entanglement'){
                 editArray[enemyIndex].Gauge = 10000+(10000*(0.3*(1+0.15))) //0.15 is break effect %
-                editArray[enemyIndex].AV = Math.ceil(editArray[enemyIndex].Gauge/editArray[enemyIndex].speed)
+                editArray[enemyIndex].AV = editArray[enemyIndex].Gauge/editArray[enemyIndex].speed
                 setCheckEntangle(true)
             }
             if(selected === true){
@@ -107,19 +107,19 @@ export default function EnemyInput(){
                 //1st element
                 //for any unit who is about to go to the back of the order, the speed must be set back to the default value therefore a check must be made on this line
                 editArray[0].Gauge = 10000
-                editArray[0].AV = Math.ceil(editArray[0].Gauge/editArray[0].speed)
+                editArray[0].AV = editArray[0].Gauge/editArray[0].speed
                 //2nd element
                 editArray[1].Gauge = editArray[1].Gauge - (editArray[1].speed*multiplier)
-                editArray[1].AV = Math.ceil(editArray[1].Gauge/editArray[1].speed)
+                editArray[1].AV = editArray[1].Gauge/editArray[1].speed
                 //3rd element
                 editArray[2].Gauge = editArray[2].Gauge - (editArray[2].speed*multiplier)
-                editArray[2].AV = Math.ceil(editArray[2].Gauge/editArray[2].speed)
+                editArray[2].AV = editArray[2].Gauge/editArray[2].speed
                 //4th element
                 editArray[3].Gauge = editArray[3].Gauge - (editArray[3].speed*multiplier)
-                editArray[3].AV = Math.ceil(editArray[3].Gauge/editArray[3].speed)
+                editArray[3].AV = editArray[3].Gauge/editArray[3].speed
                 //5th element
                 editArray[4].Gauge = editArray[4].Gauge - (editArray[4].speed*multiplier)
-                editArray[4].AV = Math.ceil(editArray[4].Gauge/editArray[4].speed)
+                editArray[4].AV = editArray[4].Gauge/editArray[4].speed
             
                 bubbleSort(editArray)
                 let temp = actionHistory
@@ -160,14 +160,14 @@ export default function EnemyInput(){
          <div className={classes.speedflex}>
          <form method='post' onSubmit={editSpeed}>
           <p className={classes.parameters}>Change Speed</p>
-          <input type='number' name="Speed"/>
+          <input type='float' name="Speed"/>
           <button type='submit'>Apply Changes</button>
           </form>
           </div>
           <div className={classes.speedflex}>
         <form method='post' onSubmit={handleGaugeChange}>
           <p className={classes.parameters}>Add to Gauge</p>
-          <input type='number' name="GaugeDelay"/>
+          <input type='float' name="GaugeDelay"/>
           <button type='submit'>Apply Changes</button>
         </form>
       </div>

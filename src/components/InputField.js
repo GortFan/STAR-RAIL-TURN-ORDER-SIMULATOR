@@ -10,7 +10,7 @@ export default function InputField(props){
   const [array, setArray] = useState(props.TurnOrder)
  
   const {actionOrder, setActionOrder, formType, setFormType} = useContext(InputFieldContext)
-
+  
         return (
           <div>
           {/* <h1>{form}</h1> */}
