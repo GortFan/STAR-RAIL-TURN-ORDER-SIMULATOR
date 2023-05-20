@@ -125,34 +125,58 @@ export default function EnemyInput(){
             
               function handleAdvance(){
                 let editArray = [...actionOrder]
-                let multiplier = editArray[1].AV
                 setSelected(false)
                 setCheckBreak(false)
                 setCheckEntangle(false)
                 setCheckImprison(false)
-                //1st element
-                //for any unit who is about to go to the back of the order, the speed must be set back to the default value therefore a check must be made on this line
-                editArray[0].Gauge = 10000
-                editArray[0].AV = editArray[0].Gauge/editArray[0].speed
-                //2nd element
-                editArray[1].Gauge = editArray[1].Gauge - (editArray[1].speed*multiplier)
-                editArray[1].AV = editArray[1].Gauge/editArray[1].speed
-                //3rd element
-                editArray[2].Gauge = editArray[2].Gauge - (editArray[2].speed*multiplier)
-                editArray[2].AV = editArray[2].Gauge/editArray[2].speed
-                //4th element
-                editArray[3].Gauge = editArray[3].Gauge - (editArray[3].speed*multiplier)
-                editArray[3].AV = editArray[3].Gauge/editArray[3].speed
-                //5th element
-                editArray[4].Gauge = editArray[4].Gauge - (editArray[4].speed*multiplier)
-                editArray[4].AV = editArray[4].Gauge/editArray[4].speed
-            
-                bubbleSort(editArray)
-                let temp = actionHistory
-                let action = "Reset " + editArray[0].name + "'s gauge to 10000. " + editArray[1].name + " to move next, using AV of " + multiplier
-                temp.push(action)
-                setActionHistory(temp)
-              }
+          
+                  if(editArray[0].AV !== 0){
+                    let multiplier = editArray[0].AV
+                    let a = editArray[1].AV - multiplier 
+                    let temp = actionHistory
+                    let action = "Starting simulation " + editArray[0].name + "'s gauge to 0." + editArray[1].name + " to move next, using AV of " + a
+                    temp.push(action)
+                    setActionHistory(temp)
+                    //1st element
+                    editArray[0].AV = 0
+                    editArray[0].Gauge = 0
+                    //2nd element
+                    editArray[1].Gauge = editArray[1].Gauge - (editArray[1].speed*multiplier)
+                    editArray[1].AV = editArray[1].Gauge/editArray[1].speed
+                    //3rd element
+                    editArray[2].Gauge = editArray[2].Gauge - (editArray[2].speed*multiplier)
+                    editArray[2].AV = editArray[2].Gauge/editArray[2].speed
+                    //4th element
+                    editArray[3].Gauge = editArray[3].Gauge - (editArray[3].speed*multiplier)
+                    editArray[3].AV = editArray[3].Gauge/editArray[3].speed
+                    //5th element
+                    editArray[4].Gauge = editArray[4].Gauge - (editArray[4].speed*multiplier)
+                    editArray[4].AV = editArray[4].Gauge/editArray[4].speed
+                  }
+                  else{
+                    let multiplier = editArray[1].AV
+                    let temp = actionHistory
+                    let action = "Reset " + editArray[0].name + "'s gauge to 10000. " + editArray[1].name + " moves next, using AV of " + multiplier
+                    temp.push(action)
+                    setActionHistory(temp)
+                    //1st element
+                    editArray[0].Gauge = 10000
+                    editArray[0].AV = editArray[0].Gauge/editArray[0].speed
+                    //2nd element
+                    editArray[1].Gauge = 0
+                    editArray[1].AV = 0
+                    //3rd element
+                    editArray[2].Gauge = editArray[2].Gauge - (editArray[2].speed*multiplier)
+                    editArray[2].AV = editArray[2].Gauge/editArray[2].speed
+                    //4th element
+                    editArray[3].Gauge = editArray[3].Gauge - (editArray[3].speed*multiplier)
+                    editArray[3].AV = editArray[3].Gauge/editArray[3].speed
+                    //5th element
+                    editArray[4].Gauge = editArray[4].Gauge - (editArray[4].speed*multiplier)
+                    editArray[4].AV = editArray[4].Gauge/editArray[4].speed
+                  }
+                  bubbleSort(editArray)
+                }
 
                             //Sorting array by AV
                             function bubbleSort(turnOrder) {
