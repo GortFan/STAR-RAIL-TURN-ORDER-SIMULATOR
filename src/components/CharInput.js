@@ -72,23 +72,7 @@ export default function CharInput(){
     
       function handleAdvance(){  
         let editArray = [...actionOrder]
-        let multiplier = editArray[1].AV
-        
-        //Edge case of identical AV
-        if(editArray[0].AV===editArray[1,2,3].AV || editArray[0].AV===editArray[1,2].AV || editArray[0].AV===editArray[1].AV){
-          console.log('hi')
-          for(let i = 1; i < 5; i++){
-            if(editArray[0].id > editArray[i].id){
-              console.log(i)
-              editArray[i].Gauge = 10000
-              editArray[i].AV = editArray[i].Gauge/editArray[i].speed
-              break
-            }
-          }
-        }
-
-        //Typical case
-        else{
+        let multiplier = editArray[1].AV     
         //1st element
         editArray[0].Gauge = 10000
         editArray[0].AV = editArray[0].Gauge/editArray[0].speed
@@ -104,7 +88,6 @@ export default function CharInput(){
         //5th element
         editArray[4].Gauge = editArray[4].Gauge - (editArray[4].speed*multiplier)
         editArray[4].AV = editArray[4].Gauge/editArray[4].speed
-      }
         bubbleSort(editArray)
         let temp = actionHistory
         temp.push(actionOrder)
