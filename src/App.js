@@ -20,6 +20,7 @@ function App() {
       AV: 80,
       Gauge: 10000,
       id: Number(5),
+      name: 'Enemy',
       path: Id5Img,
     },
     {
@@ -106,16 +107,6 @@ function App() {
 
   React.useEffect(()=>{console.log('re-render')})
 
-  function exportActionHistory() {
-    const fileData = JSON.stringify(actionHistory);
-    const blob = new Blob([fileData], { type: "text/plain" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.download = "action-history.json";
-    link.href = url;
-    link.click();
-  }
-
   return (
     <InputFieldContext.Provider value = {{defaultValues, setDefaultValues, actionOrder, setActionOrder, formType, setFormType, actionHistory, setActionHistory}}>
     <div className={classes.container}>
@@ -125,7 +116,6 @@ function App() {
             </div>
             <div className={classes.flexitem}>
               <InputField/>
-              <button onClick = {exportActionHistory}>Download Action History Log</button>
             </div>
             <div>
 

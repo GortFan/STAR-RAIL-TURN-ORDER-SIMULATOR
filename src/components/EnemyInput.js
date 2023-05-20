@@ -4,7 +4,9 @@ import {InputFieldContext} from '../Contexts/InputFieldContext'
 
 export default function EnemyInput(){
 
-    const {defaultActionOrder, setDefaultActionOrder, actionOrder, setActionOrder, formType, setFormType, actionHistory, setActionHistory} = useContext(InputFieldContext)
+    const {defaultValues, setDefaultValues, actionOrder, setActionOrder, formType, setFormType, actionHistory, setActionHistory} = useContext(InputFieldContext)
+
+    let charName = actionOrder[actionOrder.findIndex(object => object.id ===formType)].name
 
     function editSpeed(e){
         
@@ -20,6 +22,11 @@ export default function EnemyInput(){
       editArray[editArray.findIndex(object => object.id ===formType)].speed = Number(formJson.Speed)
       editArray[editArray.findIndex(object => object.id ===formType)].AV = 10000/editArray[editArray.findIndex(object => object.id ===formType)].speed
       bubbleSort(editArray)
+      
+      let temp = actionHistory
+      let action = 'Changed ' + charName +  "'s SPEED to " + formJson.Speed
+      temp.push(action)
+      setActionHistory(temp)
     }
 
     const [selected, setSelected] = useState(false);
@@ -38,17 +45,20 @@ export default function EnemyInput(){
                 // Prevent the browser from reloading the page
                 e.preventDefault()
         
-                // Read the form data
                 const form = e.target
                 const formData = new FormData(form)
         
-                // Or you can work with it as a plain object:
                 const formJson = Object.fromEntries(formData.entries())
         
                 let editArray = [...actionOrder]
                 editArray[editArray.findIndex(object => object.id ===formType)].Gauge = editArray[editArray.findIndex(object => object.id ===formType)].Gauge+Number(formJson.GaugeDelay)
                 editArray[editArray.findIndex(object => object.id ===formType)].AV = editArray[editArray.findIndex(object => object.id ===formType)].Gauge/editArray[editArray.findIndex(object => object.id ===formType)].speed
                 bubbleSort(editArray)
+
+                let temp = actionHistory
+                let action = 'Applied ACTION ADVANCE to ' + charName
+                temp.push(action)
+                setActionHistory(temp)
               }
             
 
@@ -79,6 +89,17 @@ export default function EnemyInput(){
                 setCheckBreak(false)
                 setCheckImprison(false)
                 setCheckEntangle(false)
+                let temp = actionHistory
+                let action = 'Removed debuff from ' + charName
+                temp.push(action)
+                setActionHistory(temp)
+            }
+            if(selected !== true){
+              let temp = actionHistory
+              let action = 'Applied ' + debuff + ' to ' + charName
+
+              temp.push(action)
+              setActionHistory(temp)
             }
              bubbleSort(editArray)
             }
@@ -89,12 +110,17 @@ export default function EnemyInput(){
                 editArray[editArray.findIndex(object => object.id ===formType)].AV=editArray[editArray.findIndex(object => object.id ===formType)].Gauge/editArray[editArray.findIndex(object => object.id ===formType)].speed
                 bubbleSort(editArray)
                 let temp = actionHistory
-                temp.push(actionOrder)
+                let action = 'Applied ACTION ADVANCE to ' + charName
+                temp.push(action)
                 setActionHistory(temp)
               }
 
               function handleReset(){
-                console.log('under development (will be creating a default that can be set by user and reset will set to that default)')
+                bubbleSort(defaultValues)
+                let temp = actionHistory
+                let action = 'RESET to default values'
+                temp.push(action)
+                setActionHistory(temp)
               }
             
               function handleAdvance(){
@@ -123,7 +149,8 @@ export default function EnemyInput(){
             
                 bubbleSort(editArray)
                 let temp = actionHistory
-                temp.push(actionOrder)
+                let action = "Reset " + editArray[0].name + "'s gauge to 10000. " + editArray[1].name + " to move next, using AV of " + multiplier
+                temp.push(action)
                 setActionHistory(temp)
               }
 
@@ -190,6 +217,7 @@ export default function EnemyInput(){
         <div className={classes.speedflex}>
             <button onClick={handleActionAdvance}>Action Advance</button>
             <button onClick={handleAdvance}>Advance Turn</button>
+            <button onClick={handleReset}>Reset to Defaults</button>
         </div>
         </div>
     )

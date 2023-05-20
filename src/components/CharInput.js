@@ -22,6 +22,10 @@ export default function CharInput(){
         editArray[editArray.findIndex(object => object.id ===formType)].speed = Number(formJson.Speed)
         editArray[editArray.findIndex(object => object.id ===formType)].AV = 10000/editArray[editArray.findIndex(object => object.id ===formType)].speed
         bubbleSort(editArray)
+        let temp = actionHistory
+        let action = 'Changed ' + charName +  "'s SPEED to " + formJson.Speed
+        temp.push(action)
+        setActionHistory(temp)
       }
 
       function applySpeedBoost(e){
@@ -37,6 +41,10 @@ export default function CharInput(){
         editArray[editArray.findIndex(object => object.id ===formType)].speed = editArray[editArray.findIndex(object => object.id ===formType)].speed+Number(formJson.SpeedBoost)
         editArray[editArray.findIndex(object => object.id ===formType)].AV = editArray[editArray.findIndex(object => object.id ===formType)].Gauge/editArray[editArray.findIndex(object => object.id ===formType)].speed
         bubbleSort(editArray)
+        let temp = actionHistory
+        let action = 'Added ' + formJson.SpeedBoost + " SPEED to " + charName
+        temp.push(action)
+        setActionHistory(temp)
       }
 
       function handleGaugeChange(e){
@@ -62,13 +70,18 @@ export default function CharInput(){
         editArray[editArray.findIndex(object => object.id ===formType)].AV=editArray[editArray.findIndex(object => object.id ===formType)].Gauge/editArray[editArray.findIndex(object => object.id ===formType)].speed
         bubbleSort(editArray)
         let temp = actionHistory
-        temp.push(actionOrder)
+        let action = 'Applied ACTION ADVANCE to ' + charName
+        temp.push(action)
         setActionHistory(temp)
       }
 
       
       function handleReset(){
         bubbleSort(defaultValues)
+        let temp = actionHistory
+        let action = 'RESET to default values'
+        temp.push(action)
+        setActionHistory(temp)
       }
     
       function handleAdvance(){  
@@ -92,8 +105,11 @@ export default function CharInput(){
         editArray[4].AV = editArray[4].Gauge/editArray[4].speed
       
         bubbleSort(editArray)
+
+        //custom log stuff WAHOO (my brain is fried i cant write good comments anymorege)
         let temp = actionHistory
-        temp.push(actionOrder)
+        let action = "Reset " + editArray[0].name + "'s gauge to 10000. " + editArray[1].name + " to move next, using AV of " + multiplier
+        temp.push(action)
         setActionHistory(temp)
       }
 

@@ -5,11 +5,12 @@ import classes from './ChangeLog.module.css'
 
 export default function ChangeLog(){
 
-    const {actionOrder, setActionOrder, formType, setFormType, actionHistory, setActionHistory} = useContext(InputFieldContext)
-    let log = JSON.stringify(actionHistory)
+    const {actionHistory} = useContext(InputFieldContext)
     return(
         <div className={classes.container}>
-            <p className={classes.text}>{log}</p>
+            <select className={classes.select} multiple>
+            {actionHistory.map(e=><option className={classes.option}>{e}</option>)}
+            </select>
         </div>
     )
 }

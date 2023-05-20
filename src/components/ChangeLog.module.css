@@ -1,6 +1,5 @@
 .container{
     height: 200px;
-    Overflow-y: scroll;
     background-color: rgb(15, 15, 15);
     align-items: center;
     justify-content: center;
@@ -10,6 +9,15 @@
 
 }
 
+.select{
+  height: 200px;
+  width: 100%;
+  background-color: rgb(15, 15, 15);
+}
+
+.option{
+  color: rgb(241, 241, 241);
+}
 .text{
     color: rgb(241, 241, 241);
 }
