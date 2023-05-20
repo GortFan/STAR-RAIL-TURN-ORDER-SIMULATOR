@@ -4,9 +4,10 @@ import {InputFieldContext} from '../Contexts/InputFieldContext'
 import { act } from 'react-dom/test-utils'
 
 export default function CharInput(){
-    const {actionOrder, setActionOrder, formType, setFormType, actionHistory, setActionHistory} = useContext(InputFieldContext)
-    //Setting up linked list for printout of turn history
+    const {defaultValues, setDefaultValues, actionOrder, setActionOrder, formType, setFormType, actionHistory, setActionHistory} = useContext(InputFieldContext)
+
     let charName = actionOrder[actionOrder.findIndex(object => object.id ===formType)].name
+    
       function editSpeed(e){
         
         e.preventDefault()
@@ -67,12 +68,13 @@ export default function CharInput(){
 
       
       function handleReset(){
-        console.log('under development (will be creating a default that can be set by user and reset will set to that default)')
+        bubbleSort(defaultValues)
       }
     
       function handleAdvance(){  
         let editArray = [...actionOrder]
-        let multiplier = editArray[1].AV     
+        let multiplier = editArray[1].AV
+
         //1st element
         editArray[0].Gauge = 10000
         editArray[0].AV = editArray[0].Gauge/editArray[0].speed
@@ -88,6 +90,7 @@ export default function CharInput(){
         //5th element
         editArray[4].Gauge = editArray[4].Gauge - (editArray[4].speed*multiplier)
         editArray[4].AV = editArray[4].Gauge/editArray[4].speed
+      
         bubbleSort(editArray)
         let temp = actionHistory
         temp.push(actionOrder)
@@ -122,19 +125,15 @@ export default function CharInput(){
               }
 
       return(
-        <div>
-          <div className={classes.label}>{charName}
-          </div>          
-        <div className={classes.container}>
-        <div className={classes.formflex}>
-          <div className={classes.speedflex}>
-          <form method='post' onSubmit={editSpeed}>
+      <div>
+          <div className={classes.label}>{charName}</div>          
+
+      <div className={classes.speedflex}>
+        <form method='post' onSubmit={editSpeed}>
           <p className={classes.parameters}>Change Speed</p>
           <input type='float' name="Speed"/>
           <button type='submit'>Apply Changes</button>
-          </form>
-          </div>
-        </div>
+        </form>
       </div>
       
       <div className={classes.speedflex}>
@@ -156,6 +155,7 @@ export default function CharInput(){
       <div className={classes.speedflex}>
           <button onClick={handleActionAdvance}>Action Advance</button>
           <button onClick={handleAdvance}>Advance Turn</button>
+          <button onClick={handleReset}>Reset to Defaults</button>
       </div>
 
       </div>

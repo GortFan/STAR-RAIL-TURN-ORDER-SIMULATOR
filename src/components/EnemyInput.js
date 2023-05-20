@@ -4,7 +4,7 @@ import {InputFieldContext} from '../Contexts/InputFieldContext'
 
 export default function EnemyInput(){
 
-    const {actionOrder, setActionOrder, formType, setFormType, actionHistory, setActionHistory} = useContext(InputFieldContext)
+    const {defaultActionOrder, setDefaultActionOrder, actionOrder, setActionOrder, formType, setFormType, actionHistory, setActionHistory} = useContext(InputFieldContext)
 
     function editSpeed(e){
         

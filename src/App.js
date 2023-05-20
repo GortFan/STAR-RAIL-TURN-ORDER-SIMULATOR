@@ -56,10 +56,53 @@ function App() {
     },
   ]
 
+  let defaultActionOrder = [
+    {
+      speed: 125,
+      AV: 80,
+      Gauge: 10000,
+      id: Number(5),
+      path: Id5Img,
+    },
+    {
+      speed: 110,
+      AV: 91,
+      Gauge: 10000,
+      id: Number(1),
+      name: 'Bronya',
+      path: Id1Img,
+    },
+    {
+      speed: 100,
+      AV: 100,
+      Gauge: 10000,
+      id: Number(2),
+      name: 'Herta',
+      path: Id2Img,
+    },
+    {
+      speed: 98,
+      AV: 103,
+      Gauge: 10000,
+      id: Number(3),
+      name: 'Asta',
+      path: Id3Img,
+    },
+    {
+      speed: 92,
+      AV: 109,
+      Gauge: 10000,
+      id: Number(4),
+      name: 'Gepardge',
+      path: Id4Img,
+    },
+  ]
 
   const [actionOrder, setActionOrder] = React.useState(ActionOrder)
-  const [formType, setFormType] = React.useState(1)
+  const [defaultValues, setDefaultValues,] = React.useState(defaultActionOrder)
   const [actionHistory, setActionHistory] = React.useState([])
+
+  const [formType, setFormType] = React.useState(1)
 
   React.useEffect(()=>{console.log('re-render')})
 
@@ -74,7 +117,7 @@ function App() {
   }
 
   return (
-    <InputFieldContext.Provider value = {{actionOrder, setActionOrder, formType, setFormType, actionHistory, setActionHistory}}>
+    <InputFieldContext.Provider value = {{defaultValues, setDefaultValues, actionOrder, setActionOrder, formType, setFormType, actionHistory, setActionHistory}}>
     <div className={classes.container}>
             <div>
               <CharCardsMapper
@@ -82,10 +125,10 @@ function App() {
             </div>
             <div className={classes.flexitem}>
               <InputField/>
-
+              <button onClick = {exportActionHistory}>Download Action History Log</button>
             </div>
             <div>
-              <button onClick = {exportActionHistory}>Generate Action History</button>
+
             </div>
     </div>
     <div>
