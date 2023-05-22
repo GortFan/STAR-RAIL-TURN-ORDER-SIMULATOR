@@ -91,7 +91,7 @@ export default function CharInput(){
           let multiplier = editArray[0].AV
           let a = editArray[1].AV - multiplier 
           let temp = actionHistory
-          let action = "Starting simulation " + editArray[0].name + "'s gauge to 0." + editArray[1].name + " to move next, using AV of " + a
+          let action = "Starting simulation " + editArray[0].name + "'s gauge to 0. " + editArray[1].name + " to move next, using AV of " + a
           temp.push(action)
           setActionHistory(temp)
           //1st element
@@ -112,7 +112,6 @@ export default function CharInput(){
         }
         else{
           let multiplier = editArray[1].AV
-          let a = editArray[2].AV - editArray[1].AV
           let temp = actionHistory
           let action = "Reset " + editArray[0].name + "'s gauge to 10000. " + editArray[1].name + " moves next, using AV of " + multiplier
           temp.push(action)
@@ -133,15 +132,7 @@ export default function CharInput(){
           editArray[4].Gauge = editArray[4].Gauge - (editArray[4].speed*multiplier)
           editArray[4].AV = editArray[4].Gauge/editArray[4].speed
         }
-        
-
-
-
-      
         bubbleSort(editArray)
-
-        //custom log stuff WAHOO (my brain is fried i cant write good comments anymorege)
-
       }
 
               //Sorting array by AV
