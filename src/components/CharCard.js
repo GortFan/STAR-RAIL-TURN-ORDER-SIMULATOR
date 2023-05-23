@@ -28,12 +28,6 @@ export default function CharCards(props){
         editDefaultArray[editDefaultArray.findIndex(object => object.id ===props.id)].AV = 10000/editDefaultArray[editDefaultArray.findIndex(object => object.id ===props.id)].speed
         setDefaultValues(editDefaultArray)
         console.log(defaultValues)
-        // let editDefaultArray = [...defaultActionOrder]
-        // editDefaultArray[editDefaultArray.findIndex(object => object.id ===props.id)].speed = Number(e.target.value)
-        // editDefaultArray[editDefaultArray.findIndex(object => object.id ===props.id)].AV = 10000/editDefaultArray[editDefaultArray.findIndex(object => object.id ===props.id)].speed
-        // setDefaultActionOrder(editDefaultArray)
-        // console.log(defaultActionOrder)
-        // console.log(actionOrder)
     }
 
     return(
