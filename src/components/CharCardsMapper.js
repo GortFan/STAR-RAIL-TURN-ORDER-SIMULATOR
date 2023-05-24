@@ -6,8 +6,9 @@ export default function CharCardsMapper(props){
     const {actionOrder, setActionOrder, formType, setFormType} = useContext(InputFieldContext)
     console.log(actionOrder)
     return(
+
         <ul>
-            {actionOrder.map(e=><CharCard key={e.key} path={e.path} speed={e.speed} AV={e.AV} gauge={e.Gauge}/>)}
+            {actionOrder.map(e=><CharCard key={e.name} path={e.path} speed={e.speed} AV={e.AV} gauge={e.Gauge}/>)}
         </ul>
     )
 }

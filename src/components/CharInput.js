@@ -5,7 +5,7 @@ import { act } from 'react-dom/test-utils'
 
 export default function CharInput(){
     const {defaultValues, setDefaultValues, actionOrder, setActionOrder, formType, setFormType, actionHistory, setActionHistory} = useContext(InputFieldContext)
-
+    console.log(actionOrder)
     //
     
       function editSpeed(e){

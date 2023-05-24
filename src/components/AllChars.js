@@ -23,11 +23,13 @@ import ClaraImg from '../resources/1107.png'
 import SampoImg from '../resources/1108.png'
 import HookImg from '../resources/1109.png'
 import CaelusPhysImg from '../resources/8001.png'
-import StelleFireImg from '../resources/8002.png'
+import StelleFireImg from '../resources/8004.png'
+import RobotImg from '../resources/Monster_1013010.png'
+import DeerImg from '../resources/Monster_2024010.png'
+import BatImg from '../resources/Monster_9001030.png'
 
 const CharData =[{
-    key: Number(1),
-    id: Number(1),
+    type: 'C',
     name: "March",
     path: MarchImg,
     speed: 101,
@@ -35,8 +37,7 @@ const CharData =[{
     AV: 99.00990099009901
 }, 
 {
-    key: 2,
-    id: Number(1),
+    type: 'C',
     name: "Dan",
     path: DanImg,
     speed: 110,
@@ -44,8 +45,7 @@ const CharData =[{
     AV: 90.90909090909091
 }, 
 {
-    key: 3,
-    id: Number(1),
+    type: 'C',
     name: "Himeko",
     path: HimekoImg,
     speed: 96,
@@ -53,8 +53,7 @@ const CharData =[{
     AV: 104.1666666666667
 }, 
 {
-    key: 4,
-    id: Number(1),
+    type: 'C',
     name: "Welt",
     path: WeltImg,
     speed: 102,
@@ -62,8 +61,7 @@ const CharData =[{
     AV: 98.03921568627451
 }, 
 {
-    key: 5,
-    id: Number(1),
+    type: 'C',
     name: "Kafka",
     path: KafkaImg,
     speed: 103,
@@ -71,8 +69,7 @@ const CharData =[{
     AV: 97.0873786407767
 }, 
 {
-    key: 6,
-    id: Number(1),
+    type: 'C',
     name: "Silverwolf",
     path: SilverwolfImg,
     speed: 105,
@@ -80,8 +77,7 @@ const CharData =[{
     AV: 95.23809523809524
 }, 
 {
-    key: 7,
-    id: Number(1),
+    type: 'C',
     name: "Arlan",
     path: ArlanImg,
     speed: 102,
@@ -89,8 +85,7 @@ const CharData =[{
     AV: 98.03921568627451
 }, 
 {
-    key: 8,
-    id: Number(1),
+    type: 'C',
     name: "Asta",
     path: AstaImg,
     speed: 106,
@@ -98,8 +93,7 @@ const CharData =[{
     AV: 94.33962264150943
 }, 
 {
-    key: 9,
-    id: Number(1),
+    type: 'C',
     name: "Herta",
     path: HertaImg,
     speed: 100,
@@ -107,8 +101,7 @@ const CharData =[{
     AV: 100
 }, 
 {
-    key: 10,
-    id: Number(1),
+    type: 'C',
     name: "Bronya",
     path: BronyaImg,
     speed: 99,
@@ -116,8 +109,7 @@ const CharData =[{
     AV: 101.010101010101
 }, 
 {
-    key: 11,
-    id: Number(1),
+    type: 'C',
     name: "Seele",
     path: SeeleImg,
     speed: 115,
@@ -125,8 +117,7 @@ const CharData =[{
     AV: 86.95652173913043
 }, 
 {
-    key: 12,
-    id: Number(1),
+    type: 'C',
     name: "Serval",
     path: ServalImg,
     speed: 104,
@@ -134,8 +125,7 @@ const CharData =[{
     AV: 96.15384615384615
 }, 
 {
-    key: 13,
-    id: Number(1),
+    type: 'C',
     name: "Gepard",
     path: GepardImg,
     speed: 92,
@@ -143,8 +133,7 @@ const CharData =[{
     AV: 108.695652173913
 }, 
 {
-    key: 14,
-    id: Number(1),
+    type: 'C',
     name: "Natasha",
     path: NatashaImg,
     speed: 98,
@@ -152,8 +141,7 @@ const CharData =[{
     AV: 102.0408163265306
 }, 
 {
-    key: 15,
-    id: Number(1),
+    type: 'C',
     name: "Pela",
     path: PelaImg,
     speed: 105,
@@ -161,8 +149,7 @@ const CharData =[{
     AV: 95.23809523809524
 }, 
 {
-    key: 16,
-    id: Number(1),
+    type: 'C',
     name: "Clara",
     path: ClaraImg,
     speed: 90,
@@ -170,8 +157,7 @@ const CharData =[{
     AV: 111.1111111111111
 }, 
 {
-    key: 17,
-    id: Number(1),
+    type: 'C',
     name: "Sampo",
     path: SampoImg,
     speed: 102,
@@ -179,8 +165,7 @@ const CharData =[{
     AV: 98.03921568627451
 }, 
 {
-    key: 18,
-    id: Number(1),
+    type: 'C',
     name: "Hook",
     path: HookImg,
     speed: 94,
@@ -188,8 +173,7 @@ const CharData =[{
     AV: 106.3829787234043
 }, 
 {
-    key: 19,
-    id: Number(1),
+    type: 'C',
     name: "CaelusPhys",
     path: CaelusPhysImg,
     speed: 100,
@@ -197,8 +181,7 @@ const CharData =[{
     AV: 100
 }, 
 {
-    key: 20,
-    id: Number(1),
+    type: 'C',
     name: "StelleFire",
     path: StelleFireImg,
     speed: 100,
@@ -207,13 +190,49 @@ const CharData =[{
 }
 ]
 
+const EnemyData =[{
+    type: 'E',
+    id: Number(1),
+    name: "Robot",
+    path: RobotImg,
+    speed: 101,
+    Gauge: 10000,
+    AV: 99.00990099009901
+},
+{
+    type: 'E',
+    id: Number(1),
+    name: "Deer",
+    path: DeerImg,
+    speed: 101,
+    Gauge: 10000,
+    AV: 99.00990099009901
+},
+{
+    type: 'E',
+    id: Number(1),
+    name: "Bat",
+    path: BatImg,
+    speed: 101,
+    Gauge: 10000,
+    AV: 99.00990099009901
+},
+]
 export default function AllChars(){
 
     const {teamSelect, setTeamSelect} = useContext(InputFieldContext)
-
     return(
-        <div className={classes.container}>
-            {CharData.map(e=><AllCharsCard key={e.key} name={e.name} path={e.path} speed={e.speed} Gauge={e.Gauge} AV={e.AV}/>)}
+        <div className={classes.flexcontainer}>
+        <div>
+        <div className={classes.gridcontainer}>
+            {CharData.map(e=><AllCharsCard key={e.name} type={e.type} name={e.name} path={e.path} speed={e.speed} Gauge={e.Gauge} AV={e.AV}/>)}
+        </div>
+        </div>
+        <div>
+        <div className={classes.gridcontainer}>
+            {EnemyData.map(e=><AllCharsCard key={e.name} type={e.type} name={e.name} path={e.path} speed={e.speed} Gauge={e.Gauge} AV={e.AV}/>)}
+        </div>
+        </div>
         </div>
     )
 }

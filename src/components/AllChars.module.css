@@ -1,4 +1,9 @@
-.container{
+.gridcontainer{
     display: grid;
-    grid-template-columns: 155px 155px 155px 155px;
+    grid-template-columns: 155px 155px 155px 155px 155px 155px 155px 155px 155px 155px;
+}
+
+.flexcontainer{
+    display: flex;
+    /* justify-content: space-evenly; */
 }
