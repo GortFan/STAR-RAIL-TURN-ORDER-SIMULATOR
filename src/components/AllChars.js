@@ -1,8 +1,6 @@
-import {InputFieldContext} from '../Contexts/InputFieldContext'
-import React, {useContext} from 'react'
-
 import AllCharsCard from './AllCharsCard'
 import classes from './AllChars.module.css'
+
 //Imports for mapping
 import MarchImg from '../resources/1001.png'
 import DanImg from '../resources/1002.png'
@@ -28,7 +26,7 @@ import RobotImg from '../resources/Monster_1013010.png'
 import DeerImg from '../resources/Monster_2024010.png'
 import BatImg from '../resources/Monster_9001030.png'
 
-const CharData =[{
+let CharData =[{
     type: 'C',
     name: "March",
     path: MarchImg,
@@ -190,7 +188,7 @@ const CharData =[{
 }
 ]
 
-const EnemyData =[{
+let EnemyData =[{
     type: 'E',
     id: Number(1),
     name: "Robot",
@@ -220,7 +218,8 @@ const EnemyData =[{
 ]
 export default function AllChars(){
 
-    const {teamSelect, setTeamSelect} = useContext(InputFieldContext)
+    //const {} = useContext(InputFieldContext)
+
     return(
         <div className={classes.flexcontainer}>
         <div>

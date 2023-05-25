@@ -4,10 +4,9 @@ import React, {useContext} from 'react'
 import classes from './CharCards.module.css'
 
 export default function AllCharsCard(props){
-    const {actionOrder, setActionOrder, teamSelect, setTeamSelect} = useContext(InputFieldContext)
+    const {teamSelect, setTeamSelect} = useContext(InputFieldContext)
     const [isOn, setIsOn] = React.useState(true)
     let temp = [...teamSelect]
-    //console.log(teamSelect)
     function handleClick(){
         console.log(props.type)
         if(props.type==='C'){
@@ -15,7 +14,6 @@ export default function AllCharsCard(props){
             for(let i=0; i<teamSelect.length; i++){
                 if(teamSelect[i].type==='C'){
                     counter = counter + 1
-                    console.log('hi im on mars')
                 }
             }
             if(counter===4){

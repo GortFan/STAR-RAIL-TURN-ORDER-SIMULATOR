@@ -9,7 +9,7 @@ export default function CharInput(){
     //
     
       function editSpeed(e){
-        let charName = actionOrder[actionOrder.findIndex(object => object.id ===formType)].name
+        let charName = actionOrder[actionOrder.findIndex(object => object.name ===name)].name
         e.preventDefault()
 
         const form = e.target

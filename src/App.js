@@ -1,7 +1,7 @@
 import CharCardsMapper from './components/CharCardsMapper'
-import InputField from './components/InputField'
 import ChangeLog from './components/ChangeLog'
 import AllChars from './components/AllChars'
+// import InputFormMapper from './components/InputFormMapper'
 
 import { InputFieldContext } from './Contexts/InputFieldContext'
 import classes from './App.module.css'
@@ -32,9 +32,10 @@ function App() {
             <div>
               <CharCardsMapper
                 TurnOrder = {actionOrder}/>
+              {/* <InputFormMapper/> */}
             </div>
             <div className={classes.flexitem}>
-              <InputField/>
+              
             </div>
 
     </div>
