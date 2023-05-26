@@ -8,7 +8,6 @@ export default function AllCharsCard(props){
     const [isOn, setIsOn] = React.useState(true)
     let temp = [...teamSelect]
     function handleClick(){
-        console.log(props.type)
         if(props.type==='C'){
             let counter = 0 
             for(let i=0; i<teamSelect.length; i++){
@@ -17,7 +16,6 @@ export default function AllCharsCard(props){
                 }
             }
             if(counter===4){
-                console.log('team slots are filled')
                 if(isOn !== true){
                     let removeIndex = teamSelect.findIndex(object=>object.name===props.name)
                     temp.splice(removeIndex, 1)
@@ -37,10 +35,8 @@ export default function AllCharsCard(props){
             }
         }
         if(props.type==='E'){
-            console.log('is enemy')
             if(isOn !== true){
                 let removeIndex = teamSelect.findIndex(object=>object.name===props.name)
-                //console.log(removeIndex)
                 temp.splice(removeIndex, 1)
                 setIsOn(!isOn)
             }

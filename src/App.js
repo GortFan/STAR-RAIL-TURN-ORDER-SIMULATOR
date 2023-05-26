@@ -1,6 +1,7 @@
 import CharCardsMapper from './components/CharCardsMapper'
 import ChangeLog from './components/ChangeLog'
 import AllChars from './components/AllChars'
+import ActionController from './components/ActionController'
 // import InputFormMapper from './components/InputFormMapper'
 
 import { InputFieldContext } from './Contexts/InputFieldContext'
@@ -13,7 +14,6 @@ function App() {
   const [defaultValues, setDefaultValues,] = React.useState([])
   const [actionHistory, setActionHistory] = React.useState([])
   const [teamSelect, setTeamSelect] = React.useState([])
-
   const [formType, setFormType] = React.useState(1)
 
   React.useEffect(()=>{setActionOrder(teamSelect)}, [teamSelect])
@@ -21,24 +21,19 @@ function App() {
   
   return (
     <InputFieldContext.Provider value = {{teamSelect, setTeamSelect, defaultValues, setDefaultValues, actionOrder, setActionOrder, formType, setFormType, actionHistory, setActionHistory}}>
-                <div>
-              <AllChars/>
-            </div>
-    <div>
-      <ChangeLog/>
-    </div>
-    <div className={classes.container}>
+      <div>
 
-            <div>
-              <CharCardsMapper
-                TurnOrder = {actionOrder}/>
-              {/* <InputFormMapper/> */}
-            </div>
-            <div className={classes.flexitem}>
-              
-            </div>
-
-    </div>
+      </div>
+      <div>
+        <ChangeLog/>
+      </div>
+      <div className={classes.container}>
+      <AllChars/>
+        <CharCardsMapper/>
+      </div>
+      <div>
+        <ActionController/>
+      </div>
     </InputFieldContext.Provider>
   );
 }
