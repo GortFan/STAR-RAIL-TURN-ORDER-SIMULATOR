@@ -72,10 +72,30 @@ export default function ActionController(){
         setTurn(1)
     }
     
+    function handleStart(){
+
+        let newAction = []
+
+        let setupBattle = actionOrder.map((object, index)=>{
+            if(index === 0){
+                return{
+                    ...object,
+                    Gauge: 0,
+                    AV: 0,
+                }
+            }
+            return object;
+        })
+        newAction.push('Starting Simulation')
+        newAction.push('=======================================================================================')
+        setActionHistory([...actionHistory, newAction])
+        setActionOrder(setupBattle)
+    }
     return(
         <div>
             <button className={classes.turnBtn} onClick={handleAdvance}>Advance Turn</button>
             <button className={classes.turnBtn} onClick={handleReset}>Reset</button>
+            <button className={classes.turnBtn} onClick={handleStart}>Start Simulation</button>
         </div>
     )
 }

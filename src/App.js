@@ -14,12 +14,13 @@ function App() {
   const [actionHistory, setActionHistory] = React.useState([])
   const [teamSelect, setTeamSelect] = React.useState([])
   const [turn, setTurn] = React.useState(1)
+  const [moves, setMoves] = React.useState([])
 
   React.useEffect(()=>{setActionOrder(teamSelect)}, [teamSelect])
   
   
   return (
-    <InputFieldContext.Provider value = {{turn, setTurn, teamSelect, setTeamSelect, actionOrder, setActionOrder, actionHistory, setActionHistory}}>
+    <InputFieldContext.Provider value = {{turn, setTurn, teamSelect, setTeamSelect, actionOrder, setActionOrder, actionHistory, setActionHistory, moves, setMoves}}>
       <div>
 
       </div>
@@ -27,7 +28,7 @@ function App() {
         <ChangeLog/>
       </div>
       <div className={classes.container}>
-      <ActionController/>
+        <ActionController/>
         <AllChars/>
         <CharCardsMapper/>
       </div>
