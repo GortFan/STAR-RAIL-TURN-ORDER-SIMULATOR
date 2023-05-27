@@ -1,23 +1,9 @@
-.charcontainer{
+.gridcontainer{
     display: grid;
     grid-template-columns: 155px 155px 155px;
     overflow-y: scroll;
-    height:500px;
-    margin-bottom: 30px;
-    margin-right: 50px;
+    height: 350px;
 }
 
-.enemycontainer{
-    display: grid;
-    grid-template-columns: 155px 155px 155px;
-    overflow-y: scroll;
-    height:200px;
-    margin-bottom: 30px;
-    margin-right: 50px;
-}
-
-
-.container{
-    vertical-align: top;
-    /* justify-content: space-evenly; */
+.flexcontainer{
 }

@@ -4,15 +4,15 @@ import {useContext} from 'react'
 import classes from './ChangeLog.module.css'
 
 export default function ChangeLog(){
-
     const {actionHistory} = useContext(InputFieldContext)
+    console.log(actionHistory)
     return(
         <div className={classes.container}>
-            {/* {actionHistory.map(newEntry=><div>{newEntry}</div>)} */}
-            {actionHistory.map((newAction)=>{
-                return newAction.map(e=>{
-                return <div>{e}</div>})})}
+            {actionHistory.map((innerArray)=>{
+                return innerArray.map((action)=>
+                    <div>{action}</div>
+                )
+            })}
         </div>
     )
 }
-

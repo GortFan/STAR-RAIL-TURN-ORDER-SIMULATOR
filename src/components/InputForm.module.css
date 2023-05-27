@@ -1,6 +1,6 @@
 .flexcontainer{
     display:flex;
-    margin-left: 50px;
+    margin-left: 20px;
 }
 
 p{
@@ -10,13 +10,12 @@ p{
 }
 
 input {
+    margin-right: 5px;
     border: 1.5px solid rgb(58, 58, 58);
     border-radius: 10px;  
     color: rgb(255, 255, 255);
     background-color: rgb(27, 27, 27);
-    height: 20px;
-    width: 50px;
-    align-self: center;
+    width: 60px;
 }
 
 input:hover {
@@ -46,21 +45,6 @@ button:hover {
     padding-right: 15px;
     padding-top: 3px;
     padding-bottom: 3px;
-    font-size: 15px;
-    border-radius: 20px;
-}
-
-.removeBtn {
-    font-size: 15px;
-    border-radius: 20px;  
-    border: 1.5px solid rgb(36,36,36);
-    background-color: rgb(36, 36, 36);
-    color: rgb(241, 241, 241);
-}
-
-.removeBtn:hover {
-    border: 1.5px solid rgb(139, 139, 139);
-    border-radius: 10px;  
     font-size: 15px;
     border-radius: 20px;
 }

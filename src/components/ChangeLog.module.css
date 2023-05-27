@@ -1,12 +1,11 @@
 .container{
-    height: 200px;
+    height: 350px;
     background-color: rgb(15, 15, 15);
     align-items: center;
     justify-content: center;
     align-content: center;
     box-shadow: inset 0px 0px 10px rgba(0,0,0,0.7);
     border: 1.5px solid rgb(139, 139, 139);
-    color: rgb(241, 241, 241);
     overflow-y: scroll;
 }
 
@@ -40,4 +39,9 @@
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: #8a8a8a; 
+  }
+
+  div{
+    color:rgb(241, 241, 241);
+    font-size: 20px;
   }

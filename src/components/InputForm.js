@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import { InputFieldContext } from '../Contexts/InputFieldContext'
 //A general form that wil be applied to all participants in the battle
 export default function InputForm(props){
-    const {turn, setTurn, actionOrder, setActionOrder, actionHistory, setActionHistory} = useContext(InputFieldContext)
+    const {turn, actionOrder, setActionOrder, actionHistory, setActionHistory} = useContext(InputFieldContext)
 
     function Sort(turnOrder) {
         let i, j;
@@ -55,8 +55,6 @@ export default function InputForm(props){
         Sort(editActionOrder)
         let newAction = ['Turn ' + turn + ': Changed ' + props.name +  "'s SPEED to " + newSpeed]
         setActionHistory([...actionHistory, newAction])
-        
-        form.reset()
       }
 
     function modifySpeed(e){
@@ -82,8 +80,6 @@ export default function InputForm(props){
         Sort(editActionOrder)
         let newAction = ['Turn ' + turn + ': Added ' + formJson.Modifier + " SPEED to " + props.name]
         setActionHistory([...actionHistory, newAction])
-
-        form.reset()
       }
 
     function modifyAG(e){
@@ -128,17 +124,12 @@ export default function InputForm(props){
         " New AV: " + editActionOrder[editActionOrder.findIndex(object=>object.name===props.name)].AV]
 
         setActionHistory([...actionHistory, newAction])
-
-        form.reset()
     }
 
     function handleRemove(){
         setActionOrder(actionOrder.filter(object=>object.name !== props.name))
-
         let newAction = ['Turn ' + turn + ': ' + props.name + ' has been removed from the battle.']
-
         setActionHistory([...actionHistory, newAction])
-
     }
 
 
@@ -146,7 +137,7 @@ export default function InputForm(props){
         <div>
         <div className={classes.flexcontainer}>
             <form method='post' onSubmit={changeSpeed}>
-                <p>New Speed</p>
+                <p>Speed</p>
                 <input type='float' name="Speed"/>
                 <button type='submit'>Submit</button>
             </form>
@@ -162,7 +153,7 @@ export default function InputForm(props){
                 <button type='submit'>Submit</button>
             </form>
             <div>
-            <button className={classes.removeBtn} onClick={handleRemove}>Remove from battle</button>
+            <button onClick={handleRemove}>Remove from battle</button>
             </div>
         </div>
         </div>

@@ -221,14 +221,14 @@ export default function AllChars(){
     //const {} = useContext(InputFieldContext)
 
     return(
-        <div className={classes.container}>
+        <div className={classes.flexcontainer}>
         <div>
-        <div className={classes.charcontainer}>
+        <div className={classes.gridcontainer}>
             {CharData.map(e=><AllCharsCard key={e.name} type={e.type} name={e.name} path={e.path} speed={e.speed} Gauge={e.Gauge} AV={e.AV}/>)}
         </div>
         </div>
         <div>
-        <div className={classes.enemycontainer}>
+        <div className={classes.gridcontainer}>
             {EnemyData.map(e=><AllCharsCard key={e.name} type={e.type} name={e.name} path={e.path} speed={e.speed} Gauge={e.Gauge} AV={e.AV}/>)}
         </div>
         </div>

@@ -31,10 +31,10 @@ export default function ActionController(){
         setActionOrder(turnOrder)
     }
     function handleAdvance(){
-        console.log(actionHistory)
-        let editActionOrder = JSON.parse(JSON.stringify(actionOrder))
 
         let newAction = []
+
+        let editActionOrder = JSON.parse(JSON.stringify(actionOrder))
 
         let multiplier = editActionOrder[1].AV
         //1st element
@@ -50,25 +50,25 @@ export default function ActionController(){
             editActionOrder[i].Gauge = editActionOrder[i].Gauge - (editActionOrder[i].speed*multiplier)
             editActionOrder[i].AV = editActionOrder[i].Gauge/editActionOrder[i].speed
         }
-
-        //logging to the 'console'
-        newAction.push("Turn " + turn + ": ")
-        newAction.push(editActionOrder[0].name + " has acted.")
         
-        for(let i=1; i<editActionOrder.length; i++){
-            newAction.push(editActionOrder[i].name + " Current AV: " + editActionOrder[i].AV + " Previous AV: " + actionOrder[i].AV)
+        newAction.push("Turn " + turn + ": " + editActionOrder[0].name + " has moved. ")
+
+        for(let i = 1; i < editActionOrder.length; i++){
+            newAction.push(editActionOrder[i].name + " => Prev AV: " + actionOrder[i].AV + " Current AV: " + editActionOrder[i].AV)
         }
-        newAction.push("----------------------------------------------------------------------------------------------------------------------")
-        setActionHistory([...actionHistory, newAction])
 
-        Sort(editActionOrder)
+        newAction.push('=======================================================================================')
+
+        console.log(newAction)
+        setActionHistory([...actionHistory, newAction])
         setTurn(turn + 1)
-        
+        Sort(editActionOrder)
     }
     
     function handleReset(){
         setActionOrder(teamSelect)
-        setTurn(0)
+        setActionHistory([])
+        setTurn(1)
     }
     
     return(

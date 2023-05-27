@@ -5,11 +5,11 @@ import { act } from 'react-dom/test-utils'
 
 export default function CharInput(){
     const {defaultValues, setDefaultValues, actionOrder, setActionOrder, formType, setFormType, actionHistory, setActionHistory} = useContext(InputFieldContext)
-
-    let charName = actionOrder[actionOrder.findIndex(object => object.id ===formType)].name
+    //console.log(actionOrder)
+    //
     
       function editSpeed(e){
-        
+        let charName = actionOrder[actionOrder.findIndex(object => object.name ===name)].name
         e.preventDefault()
 
         const form = e.target
@@ -29,7 +29,7 @@ export default function CharInput(){
       }
 
       function applySpeedBoost(e){
-
+        let charName = actionOrder[actionOrder.findIndex(object => object.id ===formType)].name
         e.preventDefault()
 
         const form = e.target
@@ -48,6 +48,7 @@ export default function CharInput(){
       }
 
       function handleGaugeChange(e){
+        let charName = actionOrder[actionOrder.findIndex(object => object.id ===formType)].name
         // Prevent the browser from reloading the page
         e.preventDefault()
 
@@ -65,6 +66,7 @@ export default function CharInput(){
       }
     
       function handleActionAdvance(){
+        let charName = actionOrder[actionOrder.findIndex(object => object.id ===formType)].name
         let editArray = [...actionOrder]
         editArray[editArray.findIndex(object => object.id ===formType)].Gauge=0
         editArray[editArray.findIndex(object => object.id ===formType)].AV=editArray[editArray.findIndex(object => object.id ===formType)].Gauge/editArray[editArray.findIndex(object => object.id ===formType)].speed
@@ -77,6 +79,7 @@ export default function CharInput(){
 
       
       function handleReset(){
+        let charName = actionOrder[actionOrder.findIndex(object => object.id ===formType)].name
         bubbleSort(defaultValues)
         let temp = actionHistory
         let action = 'RESET to default values'
@@ -85,6 +88,7 @@ export default function CharInput(){
       }
     
       function handleAdvance(){  
+        let charName = actionOrder[actionOrder.findIndex(object => object.id ===formType)].name
         let editArray = [...actionOrder]
 
         if(editArray[0].AV !== 0){
@@ -111,6 +115,7 @@ export default function CharInput(){
           editArray[4].AV = editArray[4].Gauge/editArray[4].speed
         }
         else{
+          let charName = actionOrder[actionOrder.findIndex(object => object.id ===formType)].name
           let multiplier = editArray[1].AV
           let temp = actionHistory
           let action = "Reset " + editArray[0].name + "'s gauge to 10000. " + editArray[1].name + " moves next, using AV of " + multiplier
@@ -163,8 +168,7 @@ export default function CharInput(){
               }
 
       return(
-      <div>
-          <div className={classes.label}>{charName}</div>          
+      <div>         
 
       <div className={classes.speedflex}>
         <form method='post' onSubmit={editSpeed}>
