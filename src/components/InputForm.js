@@ -55,6 +55,7 @@ export default function InputForm(props){
         Sort(editActionOrder)
         let newAction = ['Turn ' + turn + ': Changed ' + props.name +  "'s SPEED to " + newSpeed]
         setActionHistory([...actionHistory, newAction])
+        form.reset()
       }
 
     function modifySpeed(e){
@@ -80,6 +81,7 @@ export default function InputForm(props){
         Sort(editActionOrder)
         let newAction = ['Turn ' + turn + ': Added ' + formJson.Modifier + " SPEED to " + props.name]
         setActionHistory([...actionHistory, newAction])
+        form.reset()
       }
 
     function modifyAG(e){
@@ -124,6 +126,7 @@ export default function InputForm(props){
         " New AV: " + editActionOrder[editActionOrder.findIndex(object=>object.name===props.name)].AV]
 
         setActionHistory([...actionHistory, newAction])
+        form.reset()
     }
 
     function handleRemove(){
