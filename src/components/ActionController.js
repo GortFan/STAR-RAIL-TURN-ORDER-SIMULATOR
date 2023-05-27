@@ -3,7 +3,7 @@ import {InputFieldContext} from '../Contexts/InputFieldContext'
 
 export default function ActionController(){
     
-    const{teamSelect, actionOrder, setActionOrder, actionHistory,setActionHistory} = useContext(InputFieldContext)
+    const{turn, setTurn, teamSelect, actionOrder, setActionOrder, actionHistory,setActionHistory} = useContext(InputFieldContext)
 
     function Sort(turnOrder) {
         let i, j;
@@ -32,44 +32,43 @@ export default function ActionController(){
     }
     function handleAdvance(){
 
+        let newAction = []
+
         let editActionOrder = JSON.parse(JSON.stringify(actionOrder))
 
-        if(editActionOrder[0].AV !== 0){
+        let multiplier = editActionOrder[1].AV
+        //1st element
+        editActionOrder[0].Gauge = 10000
+        editActionOrder[0].AV = editActionOrder[0].Gauge/editActionOrder[0].speed
 
-            let multiplier = editActionOrder[0].AV
-            //1st element
-            editActionOrder[0].AV = 0
-            editActionOrder[0].Gauge = 0
+        //2nd element
+        editActionOrder[1].Gauge = 0
+        editActionOrder[1].AV = 0
 
-            //other elements
-            for(let i=1; i<editActionOrder.length; i++){
-                editActionOrder[i].Gauge = editActionOrder[i].Gauge - (editActionOrder[i].speed*multiplier)
-                editActionOrder[i].AV = editActionOrder[i].Gauge/editActionOrder[i].speed
-            }
-        }
-        else{
-
-            let multiplier = editActionOrder[1].AV
-            //1st element
-            editActionOrder[0].Gauge = 10000
-            editActionOrder[0].AV = editActionOrder[0].Gauge/editActionOrder[0].speed
-
-            //2nd element
-            editActionOrder[1].Gauge = 0
-            editActionOrder[1].AV = 0
-
-            //other elements
-            for(let i=2; i<editActionOrder.length; i++){
-                editActionOrder[i].Gauge = editActionOrder[i].Gauge - (editActionOrder[i].speed*multiplier)
-                editActionOrder[i].AV = editActionOrder[i].Gauge/editActionOrder[i].speed
-            }
+        //other elements
+        for(let i=2; i<editActionOrder.length; i++){
+            editActionOrder[i].Gauge = editActionOrder[i].Gauge - (editActionOrder[i].speed*multiplier)
+            editActionOrder[i].AV = editActionOrder[i].Gauge/editActionOrder[i].speed
         }
         
+        newAction.push("Turn " + turn + ": " + editActionOrder[0].name + " has moved. ")
+
+        for(let i = 1; i < editActionOrder.length; i++){
+            newAction.push(editActionOrder[i].name + " => Prev AV: " + actionOrder[i].AV + " Current AV: " + editActionOrder[i].AV)
+        }
+
+        newAction.push('=======================================================================================')
+
+        console.log(newAction)
+        setActionHistory([...actionHistory, newAction])
+        setTurn(turn + 1)
         Sort(editActionOrder)
     }
     
     function handleReset(){
         setActionOrder(teamSelect)
+        setActionHistory([])
+        setTurn(1)
     }
     
     return(

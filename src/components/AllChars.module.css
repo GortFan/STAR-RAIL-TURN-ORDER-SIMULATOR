@@ -1,9 +1,9 @@
 .gridcontainer{
     display: grid;
     grid-template-columns: 155px 155px 155px;
+    overflow-y: scroll;
+    height: 350px;
 }
 
 .flexcontainer{
-    display: flex;
-    /* justify-content: space-evenly; */
 }

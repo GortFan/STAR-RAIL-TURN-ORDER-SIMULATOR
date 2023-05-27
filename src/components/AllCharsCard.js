@@ -71,7 +71,18 @@ export default function AllCharsCard(props){
                 break;
             }
         }
-        setTeamSelect(turnOrder)
+
+        let setupBattle = turnOrder.map((object, index)=>{
+            if(index === 0){
+                return{
+                    ...object,
+                    Gauge: 0,
+                    AV: 0,
+                }
+            }
+            return object;
+        })
+        setTeamSelect(setupBattle)
       }
     
 

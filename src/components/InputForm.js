@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import { InputFieldContext } from '../Contexts/InputFieldContext'
 //A general form that wil be applied to all participants in the battle
 export default function InputForm(props){
-    const {actionOrder, setActionOrder, actionHistory, setActionHistory} = useContext(InputFieldContext)
+    const {turn, actionOrder, setActionOrder, actionHistory, setActionHistory} = useContext(InputFieldContext)
 
     function Sort(turnOrder) {
         let i, j;
@@ -53,7 +53,7 @@ export default function InputForm(props){
             return object;
         })
         Sort(editActionOrder)
-        let newAction = 'INBETWEEN TURNS: Changed ' + props.name +  "'s SPEED to " + newSpeed
+        let newAction = ['Turn ' + turn + ': Changed ' + props.name +  "'s SPEED to " + newSpeed]
         setActionHistory([...actionHistory, newAction])
       }
 
@@ -78,7 +78,7 @@ export default function InputForm(props){
             return object;
         })
         Sort(editActionOrder)
-        let newAction = 'INBETWEEN TURNS: Added ' + formJson.Modifier + " SPEED to " + props.name
+        let newAction = ['Turn ' + turn + ': Added ' + formJson.Modifier + " SPEED to " + props.name]
         setActionHistory([...actionHistory, newAction])
       }
 
@@ -119,15 +119,17 @@ export default function InputForm(props){
         
         Sort(editActionOrder)
 
-        let newAction = 'INBETWEEN TURNS: Using Advance Forward of: ' + formJson.reduceAG + " and Action Delay of: " + formJson.addAG + ", modified Gauge and AV of: " + props.name
+        let newAction = ['Turn ' + turn + ': Using Advance Forward of: ' + formJson.reduceAG + " and Action Delay of: " + formJson.addAG + ", modified Gauge and AV of: " + props.name
         + ". Previous Gauge: " + OldGauge + " New Gauge: " + editActionOrder[editActionOrder.findIndex(object=>object.name===props.name)].Gauge + " Previous AV: " + OldAV + 
-        " New AV: " + editActionOrder[editActionOrder.findIndex(object=>object.name===props.name)].AV
+        " New AV: " + editActionOrder[editActionOrder.findIndex(object=>object.name===props.name)].AV]
 
         setActionHistory([...actionHistory, newAction])
     }
 
     function handleRemove(){
         setActionOrder(actionOrder.filter(object=>object.name !== props.name))
+        let newAction = ['Turn ' + turn + ': ' + props.name + ' has been removed from the battle.']
+        setActionHistory([...actionHistory, newAction])
     }
 
 
@@ -135,19 +137,18 @@ export default function InputForm(props){
         <div>
         <div className={classes.flexcontainer}>
             <form method='post' onSubmit={changeSpeed}>
-                <p>Change Speed</p>
+                <p>Speed</p>
                 <input type='float' name="Speed"/>
                 <button type='submit'>Submit</button>
             </form>
             <form method='post' onSubmit={modifySpeed}>
-                <p>Add or Subtract Speed</p>
+                <p>+/- Speed</p>
                 <input type='float' name="Modifier"/>
                 <button type='submit'>Submit</button>
             </form>
             <form method='post' onSubmit={modifyAG}>
-                <p>AG Advance - Use decimals</p>
+                <p>AG Advance/Delay</p>
                 <input type='float' name="reduceAG"/>
-                <p>AG Delay - Use decimals</p>
                 <input type='float' name="addAG"/>
                 <button type='submit'>Submit</button>
             </form>
