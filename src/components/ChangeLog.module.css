@@ -6,7 +6,8 @@
     align-content: center;
     box-shadow: inset 0px 0px 10px rgba(0,0,0,0.7);
     border: 1.5px solid rgb(139, 139, 139);
-
+    color: rgb(241, 241, 241);
+    overflow-y: scroll;
 }
 
 .select{

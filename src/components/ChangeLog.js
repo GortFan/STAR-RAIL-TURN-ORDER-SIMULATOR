@@ -8,9 +8,11 @@ export default function ChangeLog(){
     const {actionHistory} = useContext(InputFieldContext)
     return(
         <div className={classes.container}>
-            <select className={classes.select} multiple>
-            {actionHistory.map(e=><option className={classes.option}>{e}</option>)}
-            </select>
+            {/* {actionHistory.map(newEntry=><div>{newEntry}</div>)} */}
+            {actionHistory.map((newAction)=>{
+                return newAction.map(e=>{
+                return <div>{e}</div>})})}
         </div>
     )
 }
+
