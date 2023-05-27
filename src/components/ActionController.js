@@ -1,5 +1,6 @@
 import { useContext } from "react"
 import {InputFieldContext} from '../Contexts/InputFieldContext'
+import classes from './ActionController.module.css'
 
 export default function ActionController(){
     
@@ -73,8 +74,8 @@ export default function ActionController(){
     
     return(
         <div>
-            <button onClick={handleAdvance}>Advance Turn</button>
-            <button onClick={handleReset}>Reset</button>
+            <button className={classes.turnBtn} onClick={handleAdvance}>Advance Turn</button>
+            <button className={classes.turnBtn} onClick={handleReset}>Reset</button>
         </div>
     )
 }

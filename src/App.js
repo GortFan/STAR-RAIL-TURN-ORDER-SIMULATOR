@@ -27,11 +27,12 @@ function App() {
         <ChangeLog/>
       </div>
       <div className={classes.container}>
-      <AllChars/>
+      <ActionController/>
+        <AllChars/>
         <CharCardsMapper/>
       </div>
       <div>
-        <ActionController/>
+
       </div>
     </InputFieldContext.Provider>
   );
